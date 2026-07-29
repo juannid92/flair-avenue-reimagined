@@ -9,38 +9,308 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as TracciamentoOrdineRouteImport } from './routes/tracciamento-ordine'
+import { Route as TerminiECondizioniRouteImport } from './routes/termini-e-condizioni'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PoliticaDiResoRouteImport } from './routes/politica-di-reso'
+import { Route as NovitaRouteImport } from './routes/novita'
+import { Route as IlMioAccountRouteImport } from './routes/il-mio-account'
+import { Route as ContattiRouteImport } from './routes/contatti'
+import { Route as ConfrontaRouteImport } from './routes/confronta'
+import { Route as ChiSiamoRouteImport } from './routes/chi-siamo'
+import { Route as CarrelloRouteImport } from './routes/carrello'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductSlugRouteImport } from './routes/product.$slug'
+import { Route as ProductCategorySlugRouteImport } from './routes/product-category.$slug'
 
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TracciamentoOrdineRoute = TracciamentoOrdineRouteImport.update({
+  id: '/tracciamento-ordine',
+  path: '/tracciamento-ordine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminiECondizioniRoute = TerminiECondizioniRouteImport.update({
+  id: '/termini-e-condizioni',
+  path: '/termini-e-condizioni',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDiResoRoute = PoliticaDiResoRouteImport.update({
+  id: '/politica-di-reso',
+  path: '/politica-di-reso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovitaRoute = NovitaRouteImport.update({
+  id: '/novita',
+  path: '/novita',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IlMioAccountRoute = IlMioAccountRouteImport.update({
+  id: '/il-mio-account',
+  path: '/il-mio-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContattiRoute = ContattiRouteImport.update({
+  id: '/contatti',
+  path: '/contatti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfrontaRoute = ConfrontaRouteImport.update({
+  id: '/confronta',
+  path: '/confronta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChiSiamoRoute = ChiSiamoRouteImport.update({
+  id: '/chi-siamo',
+  path: '/chi-siamo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarrelloRoute = CarrelloRouteImport.update({
+  id: '/carrello',
+  path: '/carrello',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductSlugRoute = ProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductCategorySlugRoute = ProductCategorySlugRouteImport.update({
+  id: '/product-category/$slug',
+  path: '/product-category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carrello': typeof CarrelloRoute
+  '/chi-siamo': typeof ChiSiamoRoute
+  '/confronta': typeof ConfrontaRoute
+  '/contatti': typeof ContattiRoute
+  '/il-mio-account': typeof IlMioAccountRoute
+  '/novita': typeof NovitaRoute
+  '/politica-di-reso': typeof PoliticaDiResoRoute
+  '/privacy': typeof PrivacyRoute
+  '/shop': typeof ShopRoute
+  '/termini-e-condizioni': typeof TerminiECondizioniRoute
+  '/tracciamento-ordine': typeof TracciamentoOrdineRoute
+  '/wishlist': typeof WishlistRoute
+  '/product-category/$slug': typeof ProductCategorySlugRoute
+  '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carrello': typeof CarrelloRoute
+  '/chi-siamo': typeof ChiSiamoRoute
+  '/confronta': typeof ConfrontaRoute
+  '/contatti': typeof ContattiRoute
+  '/il-mio-account': typeof IlMioAccountRoute
+  '/novita': typeof NovitaRoute
+  '/politica-di-reso': typeof PoliticaDiResoRoute
+  '/privacy': typeof PrivacyRoute
+  '/shop': typeof ShopRoute
+  '/termini-e-condizioni': typeof TerminiECondizioniRoute
+  '/tracciamento-ordine': typeof TracciamentoOrdineRoute
+  '/wishlist': typeof WishlistRoute
+  '/product-category/$slug': typeof ProductCategorySlugRoute
+  '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/carrello': typeof CarrelloRoute
+  '/chi-siamo': typeof ChiSiamoRoute
+  '/confronta': typeof ConfrontaRoute
+  '/contatti': typeof ContattiRoute
+  '/il-mio-account': typeof IlMioAccountRoute
+  '/novita': typeof NovitaRoute
+  '/politica-di-reso': typeof PoliticaDiResoRoute
+  '/privacy': typeof PrivacyRoute
+  '/shop': typeof ShopRoute
+  '/termini-e-condizioni': typeof TerminiECondizioniRoute
+  '/tracciamento-ordine': typeof TracciamentoOrdineRoute
+  '/wishlist': typeof WishlistRoute
+  '/product-category/$slug': typeof ProductCategorySlugRoute
+  '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/carrello'
+    | '/chi-siamo'
+    | '/confronta'
+    | '/contatti'
+    | '/il-mio-account'
+    | '/novita'
+    | '/politica-di-reso'
+    | '/privacy'
+    | '/shop'
+    | '/termini-e-condizioni'
+    | '/tracciamento-ordine'
+    | '/wishlist'
+    | '/product-category/$slug'
+    | '/product/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/carrello'
+    | '/chi-siamo'
+    | '/confronta'
+    | '/contatti'
+    | '/il-mio-account'
+    | '/novita'
+    | '/politica-di-reso'
+    | '/privacy'
+    | '/shop'
+    | '/termini-e-condizioni'
+    | '/tracciamento-ordine'
+    | '/wishlist'
+    | '/product-category/$slug'
+    | '/product/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/carrello'
+    | '/chi-siamo'
+    | '/confronta'
+    | '/contatti'
+    | '/il-mio-account'
+    | '/novita'
+    | '/politica-di-reso'
+    | '/privacy'
+    | '/shop'
+    | '/termini-e-condizioni'
+    | '/tracciamento-ordine'
+    | '/wishlist'
+    | '/product-category/$slug'
+    | '/product/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarrelloRoute: typeof CarrelloRoute
+  ChiSiamoRoute: typeof ChiSiamoRoute
+  ConfrontaRoute: typeof ConfrontaRoute
+  ContattiRoute: typeof ContattiRoute
+  IlMioAccountRoute: typeof IlMioAccountRoute
+  NovitaRoute: typeof NovitaRoute
+  PoliticaDiResoRoute: typeof PoliticaDiResoRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ShopRoute: typeof ShopRoute
+  TerminiECondizioniRoute: typeof TerminiECondizioniRoute
+  TracciamentoOrdineRoute: typeof TracciamentoOrdineRoute
+  WishlistRoute: typeof WishlistRoute
+  ProductCategorySlugRoute: typeof ProductCategorySlugRoute
+  ProductSlugRoute: typeof ProductSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tracciamento-ordine': {
+      id: '/tracciamento-ordine'
+      path: '/tracciamento-ordine'
+      fullPath: '/tracciamento-ordine'
+      preLoaderRoute: typeof TracciamentoOrdineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termini-e-condizioni': {
+      id: '/termini-e-condizioni'
+      path: '/termini-e-condizioni'
+      fullPath: '/termini-e-condizioni'
+      preLoaderRoute: typeof TerminiECondizioniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-di-reso': {
+      id: '/politica-di-reso'
+      path: '/politica-di-reso'
+      fullPath: '/politica-di-reso'
+      preLoaderRoute: typeof PoliticaDiResoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/novita': {
+      id: '/novita'
+      path: '/novita'
+      fullPath: '/novita'
+      preLoaderRoute: typeof NovitaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/il-mio-account': {
+      id: '/il-mio-account'
+      path: '/il-mio-account'
+      fullPath: '/il-mio-account'
+      preLoaderRoute: typeof IlMioAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatti': {
+      id: '/contatti'
+      path: '/contatti'
+      fullPath: '/contatti'
+      preLoaderRoute: typeof ContattiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confronta': {
+      id: '/confronta'
+      path: '/confronta'
+      fullPath: '/confronta'
+      preLoaderRoute: typeof ConfrontaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chi-siamo': {
+      id: '/chi-siamo'
+      path: '/chi-siamo'
+      fullPath: '/chi-siamo'
+      preLoaderRoute: typeof ChiSiamoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carrello': {
+      id: '/carrello'
+      path: '/carrello'
+      fullPath: '/carrello'
+      preLoaderRoute: typeof CarrelloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +318,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/product/$slug': {
+      id: '/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/product/$slug'
+      preLoaderRoute: typeof ProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product-category/$slug': {
+      id: '/product-category/$slug'
+      path: '/product-category/$slug'
+      fullPath: '/product-category/$slug'
+      preLoaderRoute: typeof ProductCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarrelloRoute: CarrelloRoute,
+  ChiSiamoRoute: ChiSiamoRoute,
+  ConfrontaRoute: ConfrontaRoute,
+  ContattiRoute: ContattiRoute,
+  IlMioAccountRoute: IlMioAccountRoute,
+  NovitaRoute: NovitaRoute,
+  PoliticaDiResoRoute: PoliticaDiResoRoute,
+  PrivacyRoute: PrivacyRoute,
+  ShopRoute: ShopRoute,
+  TerminiECondizioniRoute: TerminiECondizioniRoute,
+  TracciamentoOrdineRoute: TracciamentoOrdineRoute,
+  WishlistRoute: WishlistRoute,
+  ProductCategorySlugRoute: ProductCategorySlugRoute,
+  ProductSlugRoute: ProductSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

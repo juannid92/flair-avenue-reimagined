@@ -1,24 +1,168 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
+import hero from "@/assets/hero.jpg";
+import instagramBanner from "@/assets/instagram-banner.jpg";
+import { categories, products, type CategorySlug } from "@/data/products";
+import { ProductCard } from "@/components/site/ProductCard";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Flair Avenue — Boutique fashion femminile online" },
+      {
+        name: "description",
+        content:
+          "Abiti, top e collezioni femminili con nuovi arrivi ogni settimana. Spedizione tracciata, pagamenti sicuri e resi semplici.",
+      },
+      { property: "og:title", content: "Flair Avenue — Boutique fashion femminile online" },
+      {
+        property: "og:description",
+        content: "Nuovi arrivi ogni settimana. Spedizione tracciata e resi semplici.",
+      },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const trust = [
+  { icon: Truck, title: "Spedizione chiara", text: "Costi e tempi sempre visibili prima del checkout." },
+  { icon: ShieldCheck, title: "Pagamenti sicuri", text: "Transazioni protette e metodi di pagamento affidabili." },
+  { icon: RotateCcw, title: "Resi semplici", text: "Informazioni sul reso consultabili prima dell'acquisto." },
+  { icon: Headset, title: "Assistenza rapida", text: "Supporto veloce per ordini, taglie e resi." },
+];
+
+const selezione = ["1", "2", "3", "4"];
+
+function Home() {
+  const [tab, setTab] = useState<CategorySlug>("abiti");
+
+  const featured = products.filter((p) => selezione.includes(p.id));
+  const shown = tab === "abiti" ? featured : products.filter((p) => p.category === "top");
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className="relative h-[85vh] min-h-[520px] w-full overflow-hidden">
+        <img
+          src={hero}
+          alt="Modella con abito lungo in una via mediterranea"
+          width={1920}
+          height={1080}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-foreground/25" />
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="mx-auto max-w-[1400px] px-6 pb-16 md:pb-24">
+            <h1 className="heading-wide max-w-3xl text-3xl leading-tight text-background sm:text-5xl md:text-6xl">
+              Tutte le settimane nuovi arrivi
+            </h1>
+            <Link
+              to="/shop"
+              className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Acquista ora
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-x-6 gap-y-10 px-4 py-14 md:grid-cols-4 md:px-6">
+          {trust.map((item) => (
+            <div key={item.title} className="text-center">
+              <item.icon size={26} strokeWidth={1} className="mx-auto" />
+              <h3 className="label-wide mt-4">{item.title}</h3>
+              <p className="mx-auto mt-3 max-w-[220px] text-xs leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+        <h2 className="heading-wide text-center text-xl md:text-2xl">Selezione Flair</h2>
+        <div className="mt-6 flex justify-center gap-8">
+          {(["abiti", "top"] as const).map((slug) => (
+            <button
+              key={slug}
+              type="button"
+              onClick={() => setTab(slug)}
+              className={`label-wide border-b pb-2 transition-colors ${
+                tab === slug
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted-foreground"
+              }`}
+            >
+              {slug === "abiti" ? "Abiti" : "Top"}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 lg:grid-cols-4">
+          {shown.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
+        <img
+          src={instagramBanner}
+          alt="Due modelle con look minimali su fondo sabbia"
+          width={1920}
+          height={900}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-foreground/35" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <h2 className="heading-wide text-2xl text-background sm:text-4xl">Ispirati ogni giorno</h2>
+          <a
+            href="https://www.instagram.com/flair___avenue/"
+            target="_blank"
+            rel="noreferrer"
+            className="label-wide mt-8 inline-flex border border-background px-10 py-4 text-background transition-colors hover:bg-background hover:text-foreground"
+          >
+            Seguici su Instagram ⭐
+          </a>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+        <h2 className="heading-wide text-center text-xl md:text-2xl">Le collezioni essenziali</h2>
+        <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-muted-foreground">
+          Tre punti di partenza per costruire un look femminile, facile da acquistare.
+        </p>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {categories.slice(0, 2).map((category) => (
+            <Link
+              key={category.slug}
+              to="/product-category/$slug"
+              params={{ slug: category.slug }}
+              className="group block"
+            >
+              <div className="overflow-hidden bg-sand">
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  width={900}
+                  height={1200}
+                  loading="lazy"
+                  className="aspect-3/4 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="heading-wide mt-5 text-sm">
+                {category.name}
+                <sup className="ml-1 text-[10px] text-muted-foreground">{category.count}</sup>
+              </h3>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
