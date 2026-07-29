@@ -1,10 +1,16 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { getCategory, getProductsByCategory, type CategorySlug } from "@/data/products";
+import {
+  getCategory,
+  getProductsByCategory,
+  type Category,
+  type CategorySlug,
+  type Product,
+} from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
 import { PageHeader } from "@/components/site/PageShell";
 
 export const Route = createFileRoute("/product-category/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { category: Category; items: Product[] } => {
     const category = getCategory(params.slug);
     if (!category) throw notFound();
     return { category, items: getProductsByCategory(category.slug as CategorySlug) };

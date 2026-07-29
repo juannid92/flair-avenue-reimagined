@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Heart, Repeat, Minus, Plus, ChevronDown } from "lucide-react";
-import { getProductBySlug, products } from "@/data/products";
+import { getProductBySlug, products, type Product } from "@/data/products";
 import { formatPrice } from "@/lib/format";
 import { useShop } from "@/lib/shop-store";
 import { ProductCard } from "@/components/site/ProductCard";
 
 export const Route = createFileRoute("/product/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { product: Product } => {
     const product = getProductBySlug(params.slug);
     if (!product) throw notFound();
     return { product };
