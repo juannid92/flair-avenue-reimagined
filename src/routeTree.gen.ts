@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as TracciamentoOrdineRouteImport } from './routes/tracciamento-ordine'
+import { Route as TerminiECondizioniRouteImport } from './routes/termini-e-condizioni'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PoliticaDiResoRouteImport } from './routes/politica-di-reso'
 import { Route as NovitaRouteImport } from './routes/novita'
 import { Route as IlMioAccountRouteImport } from './routes/il-mio-account'
 import { Route as ContattiRouteImport } from './routes/contatti'
@@ -32,9 +35,24 @@ const TracciamentoOrdineRoute = TracciamentoOrdineRouteImport.update({
   path: '/tracciamento-ordine',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TerminiECondizioniRoute = TerminiECondizioniRouteImport.update({
+  id: '/termini-e-condizioni',
+  path: '/termini-e-condizioni',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDiResoRoute = PoliticaDiResoRouteImport.update({
+  id: '/politica-di-reso',
+  path: '/politica-di-reso',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NovitaRoute = NovitaRouteImport.update({
@@ -91,7 +109,10 @@ export interface FileRoutesByFullPath {
   '/contatti': typeof ContattiRoute
   '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
+  '/politica-di-reso': typeof PoliticaDiResoRoute
+  '/privacy': typeof PrivacyRoute
   '/shop': typeof ShopRoute
+  '/termini-e-condizioni': typeof TerminiECondizioniRoute
   '/tracciamento-ordine': typeof TracciamentoOrdineRoute
   '/wishlist': typeof WishlistRoute
   '/product-category/$slug': typeof ProductCategorySlugRoute
@@ -105,7 +126,10 @@ export interface FileRoutesByTo {
   '/contatti': typeof ContattiRoute
   '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
+  '/politica-di-reso': typeof PoliticaDiResoRoute
+  '/privacy': typeof PrivacyRoute
   '/shop': typeof ShopRoute
+  '/termini-e-condizioni': typeof TerminiECondizioniRoute
   '/tracciamento-ordine': typeof TracciamentoOrdineRoute
   '/wishlist': typeof WishlistRoute
   '/product-category/$slug': typeof ProductCategorySlugRoute
@@ -120,7 +144,10 @@ export interface FileRoutesById {
   '/contatti': typeof ContattiRoute
   '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
+  '/politica-di-reso': typeof PoliticaDiResoRoute
+  '/privacy': typeof PrivacyRoute
   '/shop': typeof ShopRoute
+  '/termini-e-condizioni': typeof TerminiECondizioniRoute
   '/tracciamento-ordine': typeof TracciamentoOrdineRoute
   '/wishlist': typeof WishlistRoute
   '/product-category/$slug': typeof ProductCategorySlugRoute
@@ -136,7 +163,10 @@ export interface FileRouteTypes {
     | '/contatti'
     | '/il-mio-account'
     | '/novita'
+    | '/politica-di-reso'
+    | '/privacy'
     | '/shop'
+    | '/termini-e-condizioni'
     | '/tracciamento-ordine'
     | '/wishlist'
     | '/product-category/$slug'
@@ -150,7 +180,10 @@ export interface FileRouteTypes {
     | '/contatti'
     | '/il-mio-account'
     | '/novita'
+    | '/politica-di-reso'
+    | '/privacy'
     | '/shop'
+    | '/termini-e-condizioni'
     | '/tracciamento-ordine'
     | '/wishlist'
     | '/product-category/$slug'
@@ -164,7 +197,10 @@ export interface FileRouteTypes {
     | '/contatti'
     | '/il-mio-account'
     | '/novita'
+    | '/politica-di-reso'
+    | '/privacy'
     | '/shop'
+    | '/termini-e-condizioni'
     | '/tracciamento-ordine'
     | '/wishlist'
     | '/product-category/$slug'
@@ -179,7 +215,10 @@ export interface RootRouteChildren {
   ContattiRoute: typeof ContattiRoute
   IlMioAccountRoute: typeof IlMioAccountRoute
   NovitaRoute: typeof NovitaRoute
+  PoliticaDiResoRoute: typeof PoliticaDiResoRoute
+  PrivacyRoute: typeof PrivacyRoute
   ShopRoute: typeof ShopRoute
+  TerminiECondizioniRoute: typeof TerminiECondizioniRoute
   TracciamentoOrdineRoute: typeof TracciamentoOrdineRoute
   WishlistRoute: typeof WishlistRoute
   ProductCategorySlugRoute: typeof ProductCategorySlugRoute
@@ -202,11 +241,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TracciamentoOrdineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/termini-e-condizioni': {
+      id: '/termini-e-condizioni'
+      path: '/termini-e-condizioni'
+      fullPath: '/termini-e-condizioni'
+      preLoaderRoute: typeof TerminiECondizioniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
       fullPath: '/shop'
       preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-di-reso': {
+      id: '/politica-di-reso'
+      path: '/politica-di-reso'
+      fullPath: '/politica-di-reso'
+      preLoaderRoute: typeof PoliticaDiResoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/novita': {
@@ -283,7 +343,10 @@ const rootRouteChildren: RootRouteChildren = {
   ContattiRoute: ContattiRoute,
   IlMioAccountRoute: IlMioAccountRoute,
   NovitaRoute: NovitaRoute,
+  PoliticaDiResoRoute: PoliticaDiResoRoute,
+  PrivacyRoute: PrivacyRoute,
   ShopRoute: ShopRoute,
+  TerminiECondizioniRoute: TerminiECondizioniRoute,
   TracciamentoOrdineRoute: TracciamentoOrdineRoute,
   WishlistRoute: WishlistRoute,
   ProductCategorySlugRoute: ProductCategorySlugRoute,
@@ -292,3 +355,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
