@@ -9,12 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as TracciamentoOrdineRouteImport } from './routes/tracciamento-ordine'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as NovitaRouteImport } from './routes/novita'
+import { Route as IlMioAccountRouteImport } from './routes/il-mio-account'
+import { Route as ContattiRouteImport } from './routes/contatti'
+import { Route as ConfrontaRouteImport } from './routes/confronta'
+import { Route as ChiSiamoRouteImport } from './routes/chi-siamo'
+import { Route as CarrelloRouteImport } from './routes/carrello'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as ProductCategorySlugRouteImport } from './routes/product-category.$slug'
 
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TracciamentoOrdineRoute = TracciamentoOrdineRouteImport.update({
+  id: '/tracciamento-ordine',
+  path: '/tracciamento-ordine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -23,6 +40,31 @@ const ShopRoute = ShopRouteImport.update({
 const NovitaRoute = NovitaRouteImport.update({
   id: '/novita',
   path: '/novita',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IlMioAccountRoute = IlMioAccountRouteImport.update({
+  id: '/il-mio-account',
+  path: '/il-mio-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContattiRoute = ContattiRouteImport.update({
+  id: '/contatti',
+  path: '/contatti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfrontaRoute = ConfrontaRouteImport.update({
+  id: '/confronta',
+  path: '/confronta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChiSiamoRoute = ChiSiamoRouteImport.update({
+  id: '/chi-siamo',
+  path: '/chi-siamo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarrelloRoute = CarrelloRouteImport.update({
+  id: '/carrello',
+  path: '/carrello',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,23 +85,44 @@ const ProductCategorySlugRoute = ProductCategorySlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carrello': typeof CarrelloRoute
+  '/chi-siamo': typeof ChiSiamoRoute
+  '/confronta': typeof ConfrontaRoute
+  '/contatti': typeof ContattiRoute
+  '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
   '/shop': typeof ShopRoute
+  '/tracciamento-ordine': typeof TracciamentoOrdineRoute
+  '/wishlist': typeof WishlistRoute
   '/product-category/$slug': typeof ProductCategorySlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carrello': typeof CarrelloRoute
+  '/chi-siamo': typeof ChiSiamoRoute
+  '/confronta': typeof ConfrontaRoute
+  '/contatti': typeof ContattiRoute
+  '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
   '/shop': typeof ShopRoute
+  '/tracciamento-ordine': typeof TracciamentoOrdineRoute
+  '/wishlist': typeof WishlistRoute
   '/product-category/$slug': typeof ProductCategorySlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/carrello': typeof CarrelloRoute
+  '/chi-siamo': typeof ChiSiamoRoute
+  '/confronta': typeof ConfrontaRoute
+  '/contatti': typeof ContattiRoute
+  '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
   '/shop': typeof ShopRoute
+  '/tracciamento-ordine': typeof TracciamentoOrdineRoute
+  '/wishlist': typeof WishlistRoute
   '/product-category/$slug': typeof ProductCategorySlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
@@ -67,31 +130,78 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/carrello'
+    | '/chi-siamo'
+    | '/confronta'
+    | '/contatti'
+    | '/il-mio-account'
     | '/novita'
     | '/shop'
+    | '/tracciamento-ordine'
+    | '/wishlist'
     | '/product-category/$slug'
     | '/product/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/novita' | '/shop' | '/product-category/$slug' | '/product/$slug'
+  to:
+    | '/'
+    | '/carrello'
+    | '/chi-siamo'
+    | '/confronta'
+    | '/contatti'
+    | '/il-mio-account'
+    | '/novita'
+    | '/shop'
+    | '/tracciamento-ordine'
+    | '/wishlist'
+    | '/product-category/$slug'
+    | '/product/$slug'
   id:
     | '__root__'
     | '/'
+    | '/carrello'
+    | '/chi-siamo'
+    | '/confronta'
+    | '/contatti'
+    | '/il-mio-account'
     | '/novita'
     | '/shop'
+    | '/tracciamento-ordine'
+    | '/wishlist'
     | '/product-category/$slug'
     | '/product/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarrelloRoute: typeof CarrelloRoute
+  ChiSiamoRoute: typeof ChiSiamoRoute
+  ConfrontaRoute: typeof ConfrontaRoute
+  ContattiRoute: typeof ContattiRoute
+  IlMioAccountRoute: typeof IlMioAccountRoute
   NovitaRoute: typeof NovitaRoute
   ShopRoute: typeof ShopRoute
+  TracciamentoOrdineRoute: typeof TracciamentoOrdineRoute
+  WishlistRoute: typeof WishlistRoute
   ProductCategorySlugRoute: typeof ProductCategorySlugRoute
   ProductSlugRoute: typeof ProductSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tracciamento-ordine': {
+      id: '/tracciamento-ordine'
+      path: '/tracciamento-ordine'
+      fullPath: '/tracciamento-ordine'
+      preLoaderRoute: typeof TracciamentoOrdineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -104,6 +214,41 @@ declare module '@tanstack/react-router' {
       path: '/novita'
       fullPath: '/novita'
       preLoaderRoute: typeof NovitaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/il-mio-account': {
+      id: '/il-mio-account'
+      path: '/il-mio-account'
+      fullPath: '/il-mio-account'
+      preLoaderRoute: typeof IlMioAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatti': {
+      id: '/contatti'
+      path: '/contatti'
+      fullPath: '/contatti'
+      preLoaderRoute: typeof ContattiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confronta': {
+      id: '/confronta'
+      path: '/confronta'
+      fullPath: '/confronta'
+      preLoaderRoute: typeof ConfrontaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chi-siamo': {
+      id: '/chi-siamo'
+      path: '/chi-siamo'
+      fullPath: '/chi-siamo'
+      preLoaderRoute: typeof ChiSiamoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carrello': {
+      id: '/carrello'
+      path: '/carrello'
+      fullPath: '/carrello'
+      preLoaderRoute: typeof CarrelloRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -132,8 +277,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarrelloRoute: CarrelloRoute,
+  ChiSiamoRoute: ChiSiamoRoute,
+  ConfrontaRoute: ConfrontaRoute,
+  ContattiRoute: ContattiRoute,
+  IlMioAccountRoute: IlMioAccountRoute,
   NovitaRoute: NovitaRoute,
   ShopRoute: ShopRoute,
+  TracciamentoOrdineRoute: TracciamentoOrdineRoute,
+  WishlistRoute: WishlistRoute,
   ProductCategorySlugRoute: ProductCategorySlugRoute,
   ProductSlugRoute: ProductSlugRoute,
 }

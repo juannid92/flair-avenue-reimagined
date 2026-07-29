@@ -41,7 +41,7 @@ const accordions = [
 ];
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product }: { product: Product } = Route.useLoaderData();
   const { addToCart, setCartOpen, toggleWishlist, toggleCompare, wishlist, compare } = useShop();
   const [activeImage, setActiveImage] = useState(0);
   const [size, setSize] = useState(product.sizes[1]);
