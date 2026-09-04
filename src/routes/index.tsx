@@ -1,6 +1,10 @@
+import { useRef } from "react";
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import hero from "@/assets/hero.jpg";
 import instagramBanner from "@/assets/instagram-banner.jpg";
 import { SHOP } from "@/lib/shop-config";
@@ -8,6 +12,9 @@ import { categories, products, type CategorySlug } from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
 import { getProductsByCategory } from "@/data/products";
 import { StoriaFlair } from "@/components/site/StoriaFlair";
+import { prefersReducedMotion } from "@/lib/animation";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,6 +54,48 @@ const writtenNumber: Record<number, string> = {
 };
 
 function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const heroImgRef = useRef<HTMLImageElement>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
+  const [tab, setTab] = useState<CategorySlug>("abiti");
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+
+      gsap.matchMedia("", () => {
+        const mm = gsap.matchMedia({
+          "(min-width: 768px)": "desktop",
+        });
+
+        mm.add("desktop", () => {
+          if (!heroImgRef.current || !heroTextRef.current || !heroRef.current) return;
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          });
+
+          tl.to(heroImgRef.current, { y: "12%", duration: 1 }, 0);
+          tl.to(
+            heroTextRef.current,
+            { y: "-6%", opacity: 0.4, duration: 1 },
+            0
+          );
+        });
+
+        return () => {
+          mm.revert();
+        };
+      });
+    },
+    { scope: heroRef }
+  );
+
   const [tab, setTab] = useState<CategorySlug>("abiti");
 
   const featured = products.filter((p) => selezione.includes(p.id));
@@ -61,16 +110,22 @@ function Home() {
 
   return (
     <>
-      <section className="relative h-[85vh] min-h-[520px] w-full overflow-hidden">
-        <img
-          src={hero}
-          alt="Modella con abito lungo in una via mediterranea"
-          width={1920}
-          height={1080}
-          className="h-full w-full object-cover"
-        />
+      <section ref={heroRef} className="relative h-[85vh] min-h-[520px] w-full overflow-hidden">
+        <div className="h-full overflow-hidden">
+          <img
+            ref={heroImgRef}
+            src={hero}
+            alt="Modella con abito lungo in una via mediterranea"
+            width={1920}
+            height={1080}
+            loading="eager"
+            fetchPriority="high"
+            className="h-full w-full object-cover"
+            style={{ scale: "1.12" }}
+          />
+        </div>
         <div className="absolute inset-0 bg-foreground/25" />
-        <div className="absolute inset-x-0 bottom-0">
+        <div ref={heroTextRef} className="absolute inset-x-0 bottom-0">
           <div className="mx-auto max-w-[1400px] px-6 pb-16 md:pb-24">
             <h1 className="heading-wide max-w-3xl text-3xl leading-tight text-background sm:text-5xl md:text-6xl">
               Tutte le settimane nuovi arrivi
