@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import instagramBanner from "@/assets/instagram-banner.jpg";
+import { SHOP } from "@/lib/shop-config";
 import { categories, products, type CategorySlug } from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
 import { getProductsByCategory } from "@/data/products";
@@ -135,7 +136,7 @@ function Home() {
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h2 className="heading-wide text-2xl text-background sm:text-4xl">Ispirati ogni giorno</h2>
           <a
-            href="https://www.instagram.com/flair___avenue/"
+            href={`https://www.instagram.com/${SHOP.instagram}/`}
             target="_blank"
             rel="noreferrer"
             className="label-wide mt-8 inline-flex border border-background px-10 py-4 text-background transition-colors hover:bg-background hover:text-foreground"
