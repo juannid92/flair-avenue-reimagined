@@ -7,6 +7,7 @@ import { SHOP } from "@/lib/shop-config";
 import { categories, products, type CategorySlug } from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
 import { getProductsByCategory } from "@/data/products";
+import { StoriaFlair } from "@/components/site/StoriaFlair";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,9 +54,10 @@ function Home() {
 
   const withProducts = categories.filter((c) => c.count > 0 && !c.comingSoon);
   const catCount = withProducts.length;
-  const catText = catCount >= 1 && catCount <= 4
-    ? `${writtenNumber[catCount] || catCount} punti di partenza per costruire un look femminile, facile da acquistare.`
-    : "Punti di partenza per costruire un look femminile, facile da acquistare.";
+  const catText =
+    catCount >= 1 && catCount <= 4
+      ? `${writtenNumber[catCount] || catCount} punti di partenza per costruire un look femminile, facile da acquistare.`
+      : "Punti di partenza per costruire un look femminile, facile da acquistare.";
 
   return (
     <>
@@ -122,6 +124,8 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <StoriaFlair />
 
       <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         <img
