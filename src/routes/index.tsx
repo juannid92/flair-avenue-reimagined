@@ -5,6 +5,7 @@ import hero from "@/assets/hero.jpg";
 import instagramBanner from "@/assets/instagram-banner.jpg";
 import { categories, products, type CategorySlug } from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
+import { getProductsByCategory } from "@/data/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,11 +37,24 @@ const trust = [
 
 const selezione = ["1", "2", "3", "4"];
 
+const writtenNumber: Record<number, string> = {
+  2: "due",
+  3: "tre",
+  4: "quattro",
+};
+
 function Home() {
   const [tab, setTab] = useState<CategorySlug>("abiti");
 
   const featured = products.filter((p) => selezione.includes(p.id));
   const shown = tab === "abiti" ? featured : products.filter((p) => p.category === "top");
+
+  const availableCategories = categories.filter((c) => getProductsByCategory(c.slug).length > 0);
+  const catCount = availableCategories.length;
+  const catText =
+    catCount >= 2 && catCount <= 4
+      ? `${writtenNumber[catCount]} punti di partenza per costruire un look femminile, facile da acquistare.`
+      : "Punti di partenza per costruire un look femminile, facile da acquizzare.";
 
   return (
     <>
@@ -126,43 +140,48 @@ function Home() {
             rel="noreferrer"
             className="label-wide mt-8 inline-flex border border-background px-10 py-4 text-background transition-colors hover:bg-background hover:text-foreground"
           >
-            Seguici su Instagram ⭐
+            Seguici su Instagram
           </a>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
-        <h2 className="heading-wide text-center text-xl md:text-2xl">Le collezioni essenziali</h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-muted-foreground">
-          Tre punti di partenza per costruire un look femminile, facile da acquistare.
-        </p>
+      {availableCategories.length > 0 && (
+        <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+          <h2 className="heading-wide text-center text-xl md:text-2xl">Le collezioni essenziali</h2>
+          <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-muted-foreground">
+            {catText}
+          </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {categories.slice(0, 2).map((category) => (
-            <Link
-              key={category.slug}
-              to="/product-category/$slug"
-              params={{ slug: category.slug }}
-              className="group block"
-            >
-              <div className="overflow-hidden bg-sand">
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  width={900}
-                  height={1200}
-                  loading="lazy"
-                  className="aspect-3/4 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="heading-wide mt-5 text-sm">
-                {category.name}
-                <sup className="ml-1 text-[10px] text-muted-foreground">{category.count}</sup>
-              </h3>
-            </Link>
-          ))}
-        </div>
-      </section>
+          <div className="mt-12 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+            {availableCategories.map((category) => {
+              const count = getProductsByCategory(category.slug).length;
+              return (
+                <Link
+                  key={category.slug}
+                  to="/product-category/$slug"
+                  params={{ slug: category.slug }}
+                  className="group block"
+                >
+                  <div className="overflow-hidden bg-sand">
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      width={900}
+                      height={1200}
+                      loading="lazy"
+                      className="aspect-3/4 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <h3 className="heading-wide mt-5 text-sm">
+                    {category.name}
+                    <sup className="ml-1 text-[10px] text-muted-foreground">{count}</sup>
+                  </h3>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </>
   );
 }

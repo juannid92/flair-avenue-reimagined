@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Heart, ShoppingBag, User, Repeat, Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/flairavenue-logo-dark.png.asset.json";
 import { useShop } from "@/lib/shop-store";
-import { categories } from "@/data/products";
+import { categories, getProductsByCategory } from "@/data/products";
 
 const navItems = [
   { label: "Boutique", to: "/shop" as const },
@@ -24,6 +24,8 @@ export function Header() {
   const [compact, setCompact] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [collectionsOpen, setCollectionsOpen] = useState(false);
+
+  const availableCategories = categories.filter((c) => getProductsByCategory(c.slug).length > 0);
 
   useEffect(() => {
     const onScroll = () => setCompact(window.scrollY > 40);
@@ -138,7 +140,7 @@ export function Header() {
           </button>
           {collectionsOpen && (
             <div className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 border border-border bg-background py-3">
-              {categories.map((c) => (
+              {availableCategories.map((c) => (
                 <Link
                   key={c.slug}
                   to="/product-category/$slug"
@@ -181,7 +183,7 @@ export function Header() {
               Novità
             </Link>
             <p className="heading-wide pt-3 text-lg">Collezioni</p>
-            {categories.map((c) => (
+            {availableCategories.map((c) => (
               <Link
                 key={c.slug}
                 to="/product-category/$slug"
