@@ -8,6 +8,9 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, useCallback, type ReactNode } from "react";
 import { useRouter } from "@tanstack/react-router";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
