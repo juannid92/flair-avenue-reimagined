@@ -38,6 +38,7 @@ const trust = [
 const selezione = ["1", "2", "3", "4"];
 
 const writtenNumber: Record<number, string> = {
+  1: "una",
   2: "due",
   3: "tre",
   4: "quattro",
@@ -49,12 +50,11 @@ function Home() {
   const featured = products.filter((p) => selezione.includes(p.id));
   const shown = tab === "abiti" ? featured : products.filter((p) => p.category === "top");
 
-  const availableCategories = categories.filter((c) => getProductsByCategory(c.slug).length > 0);
-  const catCount = availableCategories.length;
-  const catText =
-    catCount >= 2 && catCount <= 4
-      ? `${writtenNumber[catCount]} punti di partenza per costruire un look femminile, facile da acquistare.`
-      : "Punti di partenza per costruire un look femminile, facile da acquistare.";
+  const withProducts = categories.filter((c) => c.count > 0 && !c.comingSoon);
+  const catCount = withProducts.length;
+  const catText = catCount >= 1 && catCount <= 4
+    ? `${writtenNumber[catCount] || catCount} punti di partenza per costruire un look femminile, facile da acquistare.`
+    : "Punti di partenza per costruire un look femminile, facile da acquistare.";
 
   return (
     <>
@@ -145,43 +145,52 @@ function Home() {
         </div>
       </section>
 
-      {availableCategories.length > 0 && (
-        <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
-          <h2 className="heading-wide text-center text-xl md:text-2xl">Le collezioni essenziali</h2>
-          <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-muted-foreground">
-            {catText}
-          </p>
+      <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+        <h2 className="heading-wide text-center text-xl md:text-2xl">Le collezioni essenziali</h2>
+        <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-muted-foreground">
+          {catText}
+        </p>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
-            {availableCategories.map((category) => {
-              const count = getProductsByCategory(category.slug).length;
-              return (
-                <Link
-                  key={category.slug}
-                  to="/product-category/$slug"
-                  params={{ slug: category.slug }}
-                  className="group block"
-                >
-                  <div className="overflow-hidden bg-sand">
-                    <img
-                      src={category.image}
-                      alt={category.name}
-                      width={900}
-                      height={1200}
-                      loading="lazy"
-                      className="aspect-3/4 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <h3 className="heading-wide mt-5 text-sm">
-                    {category.name}
-                    <sup className="ml-1 text-[10px] text-muted-foreground">{count}</sup>
-                  </h3>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
+        <div className="mt-12 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+          {categories.map((category) => {
+            const hasProducts = category.count > 0 && !category.comingSoon;
+            const productLabel = category.count === 1 ? "prodotto" : "prodotti";
+            return hasProducts ? (
+              <Link
+                key={category.slug}
+                to="/product-category/$slug"
+                params={{ slug: category.slug }}
+                className="group block"
+              >
+                <div className="overflow-hidden bg-sand">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    width={900}
+                    height={1200}
+                    loading="lazy"
+                    className="aspect-3/4 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="heading-wide mt-5 text-sm">
+                  {category.name}
+                  <sup className="ml-1 text-[10px] text-muted-foreground">
+                    {category.count} {productLabel}
+                  </sup>
+                </h3>
+              </Link>
+            ) : (
+              <div
+                key={category.slug}
+                className="flex aspect-3/4 flex-col items-center justify-center bg-sand p-4"
+              >
+                <h3 className="heading-wide text-center text-sm">{category.name}</h3>
+                <p className="label-wide mt-2 text-muted-foreground">In arrivo</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 }
