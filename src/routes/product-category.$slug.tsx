@@ -1,4 +1,4 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import {
   getCategory,
   getProductsByCategory,
@@ -10,13 +10,14 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { PageHeader } from "@/components/site/PageShell";
 
 export const Route = createFileRoute("/product-category/$slug")({
-  loader: ({ params }): { category: Category; items: Product[] } => {
+  loader: ({ params }): { category: Category; items: Product[] } | { notFound: true } => {
     const category = getCategory(params.slug);
     if (!category) throw notFound();
-    return { category, items: getProductsByCategory(category.slug as CategorySlug) };
+    const items = getProductsByCategory(category.slug as CategorySlug);
+    return { category, items };
   },
   head: ({ loaderData }) => {
-    if (!loaderData) {
+    if (!loaderData || "notFound" in loaderData) {
       return {
         meta: [
           { title: "Collezione non disponibile | Flair Avenue" },
@@ -41,25 +42,47 @@ export const Route = createFileRoute("/product-category/$slug")({
 });
 
 function CategoryPage() {
-  const { category, items }: { category: Category; items: Product[] } = Route.useLoaderData();
+  const loaderData = Route.useLoaderData();
+  if (!loaderData || "notFound" in loaderData) {
+    return (
+      <>
+        <PageHeader title="Collezione non disponibile" />
+        <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-6">
+          <p className="text-center text-sm text-muted-foreground">
+            Questa collezione non è disponibile.
+          </p>
+        </div>
+      </>
+    );
+  }
+  const { category, items }: { category: Category; items: Product[] } = loaderData;
 
   return (
     <>
       <PageHeader
         title={category.name}
-        subtitle={`${items.length} capi disponibili nella collezione.`}
+        subtitle={items.length > 0 ? `${items.length} capi disponibili nella collezione.` : undefined}
       />
       <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-6">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 lg:grid-cols-4">
-          {items.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-          {items.length === 0 && (
-            <p className="col-span-full py-16 text-center text-sm text-muted-foreground">
-              Nessun prodotto disponibile in questa collezione.
+        {items.length > 0 ? (
+          <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 lg:grid-cols-4">
+            {items.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-6 py-24 text-center">
+            <p className="text-sm text-muted-foreground">
+              Presto nuovi arrivi in questa categoria.
             </p>
-          )}
-        </div>
+            <Link
+              to="/shop"
+              className="label-wide bg-primary px-10 py-4 text-primary-foreground"
+            >
+              Vedi tutta la boutique
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

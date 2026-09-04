@@ -140,16 +140,26 @@ export function Header() {
           </button>
           {collectionsOpen && (
             <div className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 border border-border bg-background py-3">
-              {availableCategories.map((c) => (
-                <Link
-                  key={c.slug}
-                  to="/product-category/$slug"
-                  params={{ slug: c.slug }}
-                  className="block px-5 py-2 text-sm tracking-wide text-muted-foreground transition-colors hover:bg-sand hover:text-foreground"
-                >
-                  {c.name}
-                </Link>
-              ))}
+              {categories.map((c) =>
+                availableCategories.some((ac) => ac.slug === c.slug) ? (
+                  <Link
+                    key={c.slug}
+                    to="/product-category/$slug"
+                    params={{ slug: c.slug }}
+                    className="block px-5 py-2 text-sm tracking-wide text-muted-foreground transition-colors hover:bg-sand hover:text-foreground"
+                  >
+                    {c.name}
+                  </Link>
+                ) : (
+                  <div
+                    key={c.slug}
+                    className="flex items-center justify-between px-5 py-2 text-sm tracking-wide text-muted-foreground"
+                  >
+                    <span>{c.name}</span>
+                    <span className="label-wide">In arrivo</span>
+                  </div>
+                )
+              )}
             </div>
           )}
         </div>
@@ -183,17 +193,27 @@ export function Header() {
               Novità
             </Link>
             <p className="heading-wide pt-3 text-lg">Collezioni</p>
-            {availableCategories.map((c) => (
-              <Link
-                key={c.slug}
-                to="/product-category/$slug"
-                params={{ slug: c.slug }}
-                onClick={() => setMenuOpen(false)}
-                className="py-2 pl-4 text-sm tracking-wide text-muted-foreground"
-              >
-                {c.name}
-              </Link>
-            ))}
+            {categories.map((c) =>
+              availableCategories.some((ac) => ac.slug === c.slug) ? (
+                <Link
+                  key={c.slug}
+                  to="/product-category/$slug"
+                  params={{ slug: c.slug }}
+                  onClick={() => setMenuOpen(false)}
+                  className="py-2 pl-4 text-sm tracking-wide text-muted-foreground"
+                >
+                  {c.name}
+                </Link>
+              ) : (
+                <div
+                  key={c.slug}
+                  className="flex items-center justify-between py-2 pl-4 text-sm tracking-wide text-muted-foreground"
+                >
+                  <span>{c.name}</span>
+                  <span className="label-wide">In arrivo</span>
+                </div>
+              )
+            )}
             <Link
               to="/contatti"
               onClick={() => setMenuOpen(false)}
