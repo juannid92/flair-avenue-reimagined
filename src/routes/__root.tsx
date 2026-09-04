@@ -7,7 +7,8 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useCallback, type ReactNode } from "react";
+import { useRouter } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -121,6 +122,27 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  // Kill and refresh ScrollTrigger on every route change (SPA: elements unmount)
+  const handleRouteChange = useCallback(() => {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+    ScrollTrigger.refresh();
+  }, []);
+
+  useEffect(() => {
+    router.subscribe(handleRouteChange);
+    return () => {
+      router.unsubscribe(handleRouteChange);
+    };
+  }, [router, handleRouteChange]);
+
+  // Recalculate scroll positions after fonts and images load
+  useEffect(() => {
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
