@@ -54,7 +54,7 @@ function Home() {
   const catText =
     catCount >= 2 && catCount <= 4
       ? `${writtenNumber[catCount]} punti di partenza per costruire un look femminile, facile da acquistare.`
-      : "Punti di partenza per costruire un look femminile, facile da acquizzare.";
+      : "Punti di partenza per costruire un look femminile, facile da acquistare.";
 
   return (
     <>

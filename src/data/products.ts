@@ -35,9 +35,6 @@ export interface Product {
   description: string;
 }
 
-/** Soglia unica per la spedizione gratuita (in €). */
-export const FREE_SHIPPING_THRESHOLD = 69;
-
 export const categories: Category[] = [
   { slug: "abiti", name: "Abiti", count: 8, image: catAbiti },
   { slug: "top", name: "Top", count: 7, image: catTop },
