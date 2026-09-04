@@ -13,13 +13,6 @@ import catTop from "@/assets/cat-top.jpg";
 
 export type CategorySlug = "abiti" | "top" | "giacche" | "gonne-e-shorts";
 
-export interface Category {
-  slug: CategorySlug;
-  name: string;
-  count: number;
-  image: string;
-}
-
 export interface Product {
   id: string;
   slug: string;
@@ -35,12 +28,13 @@ export interface Product {
   description: string;
 }
 
-export const categories: Category[] = [
-  { slug: "abiti", name: "Abiti", count: 8, image: catAbiti },
-  { slug: "top", name: "Top", count: 7, image: catTop },
-  { slug: "giacche", name: "Giacche", count: 4, image: catTop },
-  { slug: "gonne-e-shorts", name: "Gonne e Shorts", count: 5, image: catAbiti },
-];
+export interface Category {
+  slug: CategorySlug;
+  name: string;
+  count: number;
+  image: string;
+  comingSoon?: boolean;
+}
 
 const TAGLIE = ["XS", "S", "M", "L", "XL"];
 
@@ -163,6 +157,15 @@ export const products: Product[] = [
     createdAt: "2026-06-20",
     description: "Abito corto con spalle scoperte e doppio volant.",
   },
+];
+
+export const categories: Category[] = [
+  { slug: "abiti", name: "Abiti", count: products.filter((p) => p.category === "abiti").length, image: catAbiti },
+  { slug: "top", name: "Top", count: products.filter((p) => p.category === "top").length, image: catTop },
+  // Immagine segnaposto — non va mostrata nella UI
+  { slug: "giacche", name: "Giacche", count: products.filter((p) => p.category === "giacche").length, image: catTop, comingSoon: true },
+  // Immagine segnaposto — non va mostrata nella UI
+  { slug: "gonne-e-shorts", name: "Gonne e Shorts", count: products.filter((p) => p.category === "gonne-e-shorts").length, image: catAbiti, comingSoon: true },
 ];
 
 /**
