@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, X } from "lucide-react";
 import { useShop } from "@/lib/shop-store";
-import { FREE_SHIPPING_THRESHOLD } from "@/data/products";
+import { SHOP } from "@/lib/shop-config";
 import { formatPrice } from "@/lib/format";
 import { PageHeader } from "@/components/site/PageShell";
 
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/carrello")({
 
 function CarrelloPage() {
   const { cart, cartTotal, lineProduct, removeFromCart, updateQty } = useShop();
-  const missing = Math.max(0, FREE_SHIPPING_THRESHOLD - cartTotal);
+  const missing = Math.max(0, SHOP.freeShippingThreshold - cartTotal);
 
   return (
     <>

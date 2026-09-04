@@ -1,9 +1,10 @@
 import { MessageCircle } from "lucide-react";
+import { SHOP } from "@/lib/shop-config";
 
 export function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/393000000000"
+      href={`https://wa.me/${SHOP.whatsappNumber}`}
       target="_blank"
       rel="noreferrer"
       aria-label="Scrivici su WhatsApp"

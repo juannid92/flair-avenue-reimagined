@@ -59,7 +59,7 @@ export function Footer() {
           </p>
           <div className="mt-6 flex items-center gap-4">
             <a
-              href="https://www.instagram.com/flair___avenue/"
+              href={`https://www.instagram.com/${SHOP.instagram}/`}
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -77,7 +77,7 @@ export function Footer() {
               <Facebook size={18} strokeWidth={1.25} />
             </a>
             <a
-              href="mailto:info@flairavenue.it"
+              href={`mailto:${SHOP.email}`}
               aria-label="Scrivici una email"
               className="text-foreground transition-opacity hover:opacity-60"
             >

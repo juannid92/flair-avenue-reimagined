@@ -1,15 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { X, Minus, Plus } from "lucide-react";
 import { useShop } from "@/lib/shop-store";
-import { FREE_SHIPPING_THRESHOLD } from "@/data/products";
+import { SHOP } from "@/lib/shop-config";
 import { formatPrice } from "@/lib/format";
 
 export function CartDrawer() {
   const { cartOpen, setCartOpen, cart, cartTotal, lineProduct, removeFromCart, updateQty } =
     useShop();
 
-  const missing = Math.max(0, FREE_SHIPPING_THRESHOLD - cartTotal);
-  const progress = Math.min(100, (cartTotal / FREE_SHIPPING_THRESHOLD) * 100);
+  const missing = Math.max(0, SHOP.freeShippingThreshold - cartTotal);
+  const progress = Math.min(100, (cartTotal / SHOP.freeShippingThreshold) * 100);
 
   return (
     <>

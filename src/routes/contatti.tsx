@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MessageCircle, Instagram } from "lucide-react";
 import { PageHeader } from "@/components/site/PageShell";
+import { SHOP } from "@/lib/shop-config";
 
 export const Route = createFileRoute("/contatti")({
   head: () => ({
@@ -63,19 +64,19 @@ function ContattiPage() {
         </form>
 
         <div className="space-y-6 text-sm text-muted-foreground">
-          <a href="mailto:info@flairavenue.it" className="flex items-center gap-3 hover:text-foreground">
+          <a href={`mailto:${SHOP.email}`} className="flex items-center gap-3 hover:text-foreground">
             <Mail size={18} strokeWidth={1.2} /> info@flairavenue.it
           </a>
-          <a href="https://wa.me/393000000000" className="flex items-center gap-3 hover:text-foreground">
+          <a href={`https://wa.me/${SHOP.whatsappNumber}`} className="flex items-center gap-3 hover:text-foreground">
             <MessageCircle size={18} strokeWidth={1.2} /> Scrivici su WhatsApp
           </a>
           <a
-            href="https://www.instagram.com/flair___avenue/"
+            href={`https://www.instagram.com/${SHOP.instagram}/`}
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-3 hover:text-foreground"
           >
-            <Instagram size={18} strokeWidth={1.2} /> @flair___avenue
+            <Instagram size={18} strokeWidth={1.2} /> @{SHOP.instagram}
           </a>
           <p className="leading-relaxed">
             Rispondiamo dal lunedì al venerdì, dalle 9:00 alle 18:00. Per le richieste su ordini

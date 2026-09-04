@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Heart, Repeat, Minus, Plus, ChevronDown } from "lucide-react";
 import { getProductBySlug, products, type Product } from "@/data/products";
+import { SHOP } from "@/lib/shop-config";
 import { formatPrice } from "@/lib/format";
 import { useShop } from "@/lib/shop-store";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -196,7 +197,7 @@ function ProductPage() {
                   <div className="pb-5 text-sm leading-relaxed text-muted-foreground">
                     {item.id === "descrizione" && product.description}
                     {item.id === "spedizioni" &&
-                      "Spedizione tracciata in 2-4 giorni lavorativi in tutta Italia. Reso disponibile entro 14 giorni dalla consegna."}
+                      `Spedizione tracciata in ${SHOP.deliveryDays} in tutta Italia. Reso disponibile entro ${SHOP.returnDays} giorni dalla consegna.`}
                     {item.id === "taglie" &&
                       "Le taglie seguono la vestibilità italiana standard: XS (38), S (40), M (42), L (44), XL (46). In caso di dubbio scegli la taglia superiore."}
                   </div>
