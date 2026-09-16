@@ -63,12 +63,9 @@ function Home() {
     () => {
       if (prefersReducedMotion()) return;
 
-      gsap.matchMedia("", () => {
-        const mm = gsap.matchMedia({
-          "(min-width: 768px)": "desktop",
-        });
+      const mm = gsap.matchMedia();
 
-        mm.add("desktop", () => {
+      mm.add("(min-width: 768px)", () => {
           if (!heroImgRef.current || !heroTextRef.current || !heroRef.current) return;
 
           const tl = gsap.timeline({
