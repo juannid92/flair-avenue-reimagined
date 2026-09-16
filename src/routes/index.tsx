@@ -63,12 +63,9 @@ function Home() {
     () => {
       if (prefersReducedMotion()) return;
 
-      gsap.matchMedia("", () => {
-        const mm = gsap.matchMedia({
-          "(min-width: 768px)": "desktop",
-        });
+      const mm = gsap.matchMedia();
 
-        mm.add("desktop", () => {
+      mm.add("(min-width: 768px)", () => {
           if (!heroImgRef.current || !heroTextRef.current || !heroRef.current) return;
 
           const tl = gsap.timeline({
@@ -88,15 +85,13 @@ function Home() {
           );
         });
 
-        return () => {
-          mm.revert();
-        };
-      });
+      return () => {
+        mm.revert();
+      };
     },
     { scope: heroRef }
   );
 
-  const [tab, setTab] = useState<CategorySlug>("abiti");
 
   const featured = products.filter((p) => selezione.includes(p.id));
   const shown = tab === "abiti" ? featured : products.filter((p) => p.category === "top");
