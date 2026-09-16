@@ -133,10 +133,8 @@ function RootComponent() {
   }, []);
 
   useEffect(() => {
-    router.subscribe(handleRouteChange);
-    return () => {
-      router.unsubscribe(handleRouteChange);
-    };
+    const unsubscribe = router.subscribe("onResolved", handleRouteChange);
+    return unsubscribe;
   }, [router, handleRouteChange]);
 
   // Recalculate scroll positions after fonts and images load

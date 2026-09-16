@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Mail, Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
 import logo from "@/assets/flairavenue-logo-dark.png.asset.json";
+import { SHOP } from "@/lib/shop-config";
 
 const perks = [
   {
