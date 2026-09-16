@@ -31,13 +31,9 @@ export function StoriaFlair() {
     () => {
       if (prefersReducedMotion()) return;
 
-      gsap.matchMedia("", () => {
-        const mm = gsap.matchMedia({
-          "(max-width: 767px)": "mobile",
-          "(min-width: 768px)": "desktop",
-        });
+      const mm = gsap.matchMedia();
 
-        mm.add("mobile", () => {
+        mm.add("(max-width: 767px)", () => {
           [text1Ref, text2Ref, text3Ref].forEach((ref) => {
             if (!ref.current) return;
             gsap.fromTo(
@@ -59,7 +55,7 @@ export function StoriaFlair() {
           ScrollTrigger.refresh();
         });
 
-        mm.add("desktop", () => {
+        mm.add("(min-width: 768px)", () => {
           if (!panelRef.current || !containerRef.current) return;
 
           const tl = gsap.timeline({
@@ -107,10 +103,9 @@ export function StoriaFlair() {
           ScrollTrigger.refresh();
         });
 
-        return () => {
-          mm.revert();
-        };
-      });
+      return () => {
+        mm.revert();
+      };
     },
     { scope: containerRef }
   );
