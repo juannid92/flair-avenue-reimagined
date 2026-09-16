@@ -96,7 +96,6 @@ function Home() {
     { scope: heroRef }
   );
 
-  const [tab, setTab] = useState<CategorySlug>("abiti");
 
   const featured = products.filter((p) => selezione.includes(p.id));
   const shown = tab === "abiti" ? featured : products.filter((p) => p.category === "top");
