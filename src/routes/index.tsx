@@ -85,10 +85,9 @@ function Home() {
           );
         });
 
-        return () => {
-          mm.revert();
-        };
-      });
+      return () => {
+        mm.revert();
+      };
     },
     { scope: heroRef }
   );
