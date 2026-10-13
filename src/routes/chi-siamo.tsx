@@ -28,7 +28,7 @@ const chapters = [
       "Flair Avenue nasce in Italia con un'idea semplice: rendere accessibile una moda femminile curata, senza rinunciare alla qualità dei tessuti e all'attenzione ai dettagli.",
     ],
     image: sized(media.dress, 1000),
-    alt: "Abito lungo azzurro in pizzo con spacco",
+    alt: "Vestito lungo marrone in pizzo",
   },
   {
     n: "II",
@@ -37,7 +37,7 @@ const chapters = [
       "Ogni settimana selezioniamo nuovi capi — abiti, top, giacche, gonne e shorts — pensati per costruire un guardaroba versatile, adatto sia al giorno che alla sera.",
     ],
     image: sized(media.laceBrown, 1000),
-    alt: "Abito lungo in pizzo marrone",
+    alt: "Corpetto e longuette in pizzo marrone",
   },
   {
     n: "III",
@@ -46,7 +46,7 @@ const chapters = [
       "Lavoriamo con spedizioni tracciate, pagamenti protetti e una procedura di reso chiara, perché acquistare online deve essere semplice quanto entrare in negozio.",
     ],
     image: sized(media.topSun, 1000),
-    alt: "Top bianco con stampa sole",
+    alt: "Body a camicia bianco",
   },
 ];
 

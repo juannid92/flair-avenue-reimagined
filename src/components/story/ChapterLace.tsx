@@ -9,7 +9,7 @@ import { media, sized } from "@/lib/media";
 /** Capitolo II — Mezzogiorno. Pinned: il pizzo si apre a cerchio, poi sale il sipario sull'abito. */
 export function ChapterLace() {
   const root = useRef<HTMLElement>(null);
-  const product = products.find((p) => p.id === "2540")!;
+  const product = products.find((p) => p.id === "3362")!;
 
   useGSAP(
     () => {
@@ -71,7 +71,7 @@ export function ChapterLace() {
       <div className="l-circle absolute inset-0">
         <img
           src={sized(media.lace, 1800)}
-          alt="Dettaglio del pizzo su un abito leopardato"
+          alt="Dettaglio del pizzo su un minidress nero"
           width={900}
           height={1200}
           loading="lazy"
@@ -119,7 +119,7 @@ export function ChapterLace() {
         <div className="l-copy order-2 md:order-1">
           <p className="label-wide text-sun">L'abito di mezzogiorno</p>
           <h3 className="story-title mt-4 text-[clamp(2.2rem,5vw,4.6rem)]">
-            Azzurro, <em>con lo spacco.</em>
+            Marrone, <em>in pizzo.</em>
           </h3>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-background/75 md:text-base">
             {product.description}

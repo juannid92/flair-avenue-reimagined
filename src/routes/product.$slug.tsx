@@ -56,8 +56,12 @@ function ProductPage() {
   const [open, setOpen] = useState<string | null>("descrizione");
 
   const related = [
-    ...products.filter((p) => p.id !== product.id && p.category === product.category),
-    ...products.filter((p) => p.id !== product.id && p.category !== product.category),
+    ...products.filter(
+      (p) => p.id !== product.id && p.category === product.category && p.season === product.season,
+    ),
+    ...products.filter(
+      (p) => p.id !== product.id && p.category !== product.category && p.season === product.season,
+    ),
   ].slice(0, 4);
 
   return (

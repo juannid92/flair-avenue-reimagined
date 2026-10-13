@@ -51,6 +51,9 @@
   --color-lace-blue: var(--lace-blue);
   --color-poppy: var(--poppy);
   --color-cocoa: var(--cocoa);
+  --color-coffee: var(--coffee);
+  --color-bordeaux: var(--bordeaux);
+  --color-olive: var(--olive);
 
   --tracking-wider: 0.14em;
   --tracking-widest: 0.24em;
@@ -89,6 +92,9 @@
   --lace-blue: oklch(0.82 0.08 215);
   --poppy: oklch(0.55 0.2 27);
   --cocoa: oklch(0.3 0.06 40);
+  --coffee: oklch(0.42 0.06 55);
+  --bordeaux: oklch(0.34 0.12 15);
+  --olive: oklch(0.4 0.06 125);
 }
 
 .dark {

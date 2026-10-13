@@ -68,7 +68,7 @@ export function HeroStory() {
       <div className="hero-content absolute inset-x-0 bottom-0">
         <div className="mx-auto max-w-[1400px] px-6 pb-14 md:pb-20">
           <p className="hero-kicker label-wide mb-6 text-background/85">
-            Tutte le settimane nuovi arrivi
+            Fall/Winter 2026 · nuovi arrivi ogni settimana
           </p>
           <h1 className="hero-title story-title text-[clamp(3rem,12vw,11rem)]">
             <span className="block">Ogni abito</span>

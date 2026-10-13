@@ -61,7 +61,7 @@ export function Epilogue() {
       </div>
       <div className="e-img-b absolute bottom-[8%] right-[6%] hidden w-[16vw] max-w-[260px] md:block">
         <img
-          src={sized(media.topSun, 500)}
+          src={sized(media.banner, 500)}
           alt=""
           width={900}
           height={1200}

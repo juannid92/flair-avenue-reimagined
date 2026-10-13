@@ -1,20 +1,20 @@
 import { useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion, splitLinesReveal } from "@/lib/motion";
-import { products, type CategorySlug } from "@/data/products";
+import { categories, products, CURRENT_SEASON, type CategorySlug } from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
-
-const FEATURED = ["2540", "2538", "3525", "2518"];
 
 /** Capitolo IV — Sera. Lo shop: dopo la storia, la scelta. */
 export function Selezione() {
   const root = useRef<HTMLElement>(null);
+  const tabs = categories.filter((c) => c.count > 0);
   const [tab, setTab] = useState<CategorySlug>("abiti");
 
-  const shown =
-    tab === "abiti"
-      ? products.filter((p) => FEATURED.includes(p.id))
-      : products.filter((p) => p.category === "top");
+  const shown = products
+    .filter((p) => p.category === tab && p.season === CURRENT_SEASON)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || Number(b.id) - Number(a.id))
+    .slice(0, 4);
 
   useGSAP(
     () => {
@@ -71,22 +71,22 @@ export function Selezione() {
           Selezione <em>Flair</em>
         </h2>
         <p className="s-intro mx-auto mt-6 max-w-md text-center text-base leading-relaxed text-muted-foreground">
-          Dopo la storia, la scelta. Ogni capo è un finale possibile: il tuo, adesso.
+          Dopo la storia, la scelta. La collezione Fall/Winter 2026, categoria per categoria.
         </p>
 
-        <div className="s-tabs mt-10 flex justify-center gap-10">
-          {(["abiti", "top"] as const).map((slug) => (
+        <div className="s-tabs mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4 md:gap-x-10">
+          {tabs.map((c) => (
             <button
-              key={slug}
+              key={c.slug}
               type="button"
-              onClick={() => setTab(slug)}
+              onClick={() => setTab(c.slug)}
               className={`label-wide border-b pb-2 transition-colors ${
-                tab === slug
+                tab === c.slug
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground"
               }`}
             >
-              {slug === "abiti" ? "Abiti" : "Top"}
+              {c.name}
             </button>
           ))}
         </div>
@@ -97,6 +97,15 @@ export function Selezione() {
               <ProductCard product={product} />
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <Link
+            to="/shop"
+            className="label-wide inline-flex border border-foreground px-10 py-4 transition-colors hover:bg-foreground hover:text-background"
+          >
+            Vedi tutta la collezione
+          </Link>
         </div>
       </div>
     </section>

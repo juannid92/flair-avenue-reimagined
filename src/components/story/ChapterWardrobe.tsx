@@ -65,7 +65,7 @@ export function ChapterWardrobe() {
       <div className="relative aspect-4/5 overflow-hidden md:aspect-auto">
         <img
           src={sized(media.dress, 1000)}
-          alt="Abito lungo azzurro in pizzo con spacco, indossato"
+          alt="Vestito lungo marrone in pizzo, indossato"
           width={900}
           height={1200}
           loading="lazy"
@@ -74,7 +74,7 @@ export function ChapterWardrobe() {
         <div className="w-layer-2 absolute inset-0 hidden md:block">
           <img
             src={sized(media.topSun, 1000)}
-            alt="Top bianco e nero con stampa sole"
+            alt="Body a camicia bianco"
             width={900}
             height={1200}
             loading="lazy"
@@ -100,7 +100,7 @@ export function ChapterWardrobe() {
           <div className="relative mt-8 max-w-md md:min-h-36">
             <p className="w-step-1 text-base leading-relaxed text-muted-foreground md:text-lg">
               Si comincia sempre da lì: un abito scelto la sera prima, la luce che entra di sbieco,
-              quell'azzurro che sa già di estate.
+              quel marrone che sa già d'autunno.
             </p>
             <p className="w-step-2 mt-5 text-base leading-relaxed text-muted-foreground md:absolute md:inset-x-0 md:top-0 md:mt-0 md:text-lg">
               Poi qualcosa di semplice da abbinare. Pochi pezzi, provati e scelti a mano: solo

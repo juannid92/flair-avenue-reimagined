@@ -7,24 +7,24 @@ import { formatPrice } from "@/lib/format";
 
 const panels = [
   {
-    id: "2540",
-    word: "Azzurro",
-    note: "Il cielo sopra i tetti.",
-    bg: "bg-lace-blue text-foreground",
-  },
-  {
-    id: "2538",
-    word: "Giallo",
-    note: "Il sole alto, la gonna che si muove.",
-    bg: "bg-sun text-foreground",
+    id: "3532",
+    word: "Coffee",
+    note: "Il primo caffè, la luce bassa di ottobre.",
+    bg: "bg-coffee text-background",
   },
   {
     id: "3525",
-    word: "Rosso",
-    note: "La sera che non vuole finire.",
-    bg: "bg-poppy text-background",
+    word: "Bordeaux",
+    note: "La sera che arriva presto.",
+    bg: "bg-bordeaux text-background",
   },
-  { id: "2518", word: "Marrone", note: "Il pizzo che sa di casa.", bg: "bg-cocoa text-background" },
+  {
+    id: "3536",
+    word: "Militare",
+    note: "Il verde della strada, sempre di corsa.",
+    bg: "bg-olive text-background",
+  },
+  { id: "3535", word: "Nero", note: "Quello che va bene sempre.", bg: "bg-night text-background" },
 ];
 
 /** Capitolo III — Pomeriggio. Scroll orizzontale pinned: ogni capo ha il suo colore, la sua scena. */
@@ -105,7 +105,7 @@ export function ChapterColors() {
           <h2 className="story-title mt-6 max-w-4xl text-[clamp(3rem,9vw,8.5rem)]">
             Il colore arriva
             <br />
-            col <em>sole alto.</em>
+            con <em>l'autunno.</em>
           </h2>
           <p className="mt-8 flex items-center gap-4 text-sm text-muted-foreground">
             <span className="label-wide">Scorri</span>
