@@ -6,11 +6,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useCallback, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useRouter } from "@tanstack/react-router";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import gsap from "gsap";
-gsap.registerPlugin(ScrollTrigger);
+import { ScrollTrigger } from "@/lib/motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -20,6 +18,9 @@ import { Footer } from "@/components/site/Footer";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
+import { Preloader } from "@/components/site/Preloader";
+import { ScrollReset } from "@/components/site/PageMotion";
 
 function NotFoundComponent() {
   return (
@@ -43,11 +44,12 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    const err = error instanceof Error ? error : new Error(String(error));
+    reportLovableError(err, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
@@ -97,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -124,29 +126,21 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const router = useRouter();
-
-  // Kill and refresh ScrollTrigger on every route change (SPA: elements unmount)
-  const handleRouteChange = useCallback(() => {
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-    ScrollTrigger.refresh();
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = router.subscribe("onResolved", handleRouteChange);
-    return unsubscribe;
-  }, [router, handleRouteChange]);
 
   // Recalculate scroll positions after fonts and images load
   useEffect(() => {
     const onLoad = () => ScrollTrigger.refresh();
     window.addEventListener("load", onLoad);
+    document.fonts?.ready.then(onLoad);
     return () => window.removeEventListener("load", onLoad);
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ShopProvider>
+        <SmoothScroll />
+        <Preloader />
+        <ScrollReset />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">

@@ -1,12 +1,19 @@
 import type { ReactNode } from "react";
+import { PageMotion } from "@/components/site/PageMotion";
 
 export function PageHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <div className="border-b border-border bg-sand">
-      <div className="mx-auto max-w-[1400px] px-4 py-14 text-center md:px-6 md:py-20">
-        <h1 className="heading-wide text-xl md:text-3xl">{title}</h1>
+    <div className="grain relative overflow-hidden border-b border-border bg-cream">
+      <PageMotion />
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-16 text-center md:px-6 md:py-28">
+        <h1 data-split className="story-title text-[clamp(3rem,8vw,7rem)]">
+          {title}
+        </h1>
         {subtitle && (
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          <p
+            data-reveal
+            className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base"
+          >
             {subtitle}
           </p>
         )}
@@ -16,14 +23,15 @@ export function PageHeader({ title, subtitle }: { title: string; subtitle?: stri
 }
 
 export function PageSection({ children }: { children: ReactNode }) {
-  return (
-    <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-6 md:py-20">{children}</div>
-  );
+  return <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-6 md:py-20">{children}</div>;
 }
 
 export function Prose({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto max-w-2xl space-y-5 text-sm leading-relaxed text-muted-foreground">
+    <div
+      data-reveal
+      className="mx-auto max-w-2xl space-y-5 text-sm leading-relaxed text-muted-foreground"
+    >
       {children}
     </div>
   );

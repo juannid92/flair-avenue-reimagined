@@ -1,5 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader, PageSection, Prose } from "@/components/site/PageShell";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageMotion } from "@/components/site/PageMotion";
+import banner from "@/assets/instagram-banner.jpg";
+import catAbiti from "@/assets/cat-abiti.jpg";
+import p4b from "@/assets/p4-b.jpg";
+import t1a from "@/assets/t1-a.jpg";
 
 export const Route = createFileRoute("/chi-siamo")({
   head: () => ({
@@ -19,30 +23,107 @@ export const Route = createFileRoute("/chi-siamo")({
   component: ChiSiamoPage,
 });
 
+const chapters = [
+  {
+    n: "I",
+    title: "Una idea semplice",
+    text: [
+      "Flair Avenue nasce in Italia con un'idea semplice: rendere accessibile una moda femminile curata, senza rinunciare alla qualità dei tessuti e all'attenzione ai dettagli.",
+    ],
+    image: catAbiti,
+    alt: "Abiti bianchi su un appendiabiti",
+  },
+  {
+    n: "II",
+    title: "Ogni settimana, una scena nuova",
+    text: [
+      "Ogni settimana selezioniamo nuovi capi — abiti, top, giacche, gonne e shorts — pensati per costruire un guardaroba versatile, adatto sia al giorno che alla sera.",
+    ],
+    image: p4b,
+    alt: "Dettaglio del pizzo di un abito marrone",
+  },
+  {
+    n: "III",
+    title: "Come entrare in negozio",
+    text: [
+      "Lavoriamo con spedizioni tracciate, pagamenti protetti e una procedura di reso chiara, perché acquistare online deve essere semplice quanto entrare in negozio.",
+    ],
+    image: t1a,
+    alt: "Top in raso avorio indossato di spalle",
+  },
+];
+
 function ChiSiamoPage() {
   return (
     <>
-      <PageHeader
-        title="Chi siamo"
-        subtitle="Una boutique femminile pensata per chi cerca capi eleganti e facili da indossare."
-      />
-      <PageSection>
-        <Prose>
-          <p>
-            Flair Avenue nasce in Italia con un'idea semplice: rendere accessibile una moda
-            femminile curata, senza rinunciare alla qualità dei tessuti e all'attenzione ai
-            dettagli.
-          </p>
-          <p>
-            Ogni settimana selezioniamo nuovi capi — abiti, top, giacche, gonne e shorts — pensati
-            per costruire un guardaroba versatile, adatto sia al giorno che alla sera.
-          </p>
-          <p>
-            Lavoriamo con spedizioni tracciate, pagamenti protetti e una procedura di reso chiara,
-            perché acquistare online deve essere semplice quanto entrare in negozio.
-          </p>
-        </Prose>
-      </PageSection>
+      <PageMotion />
+      <section className="relative">
+        <div data-parallax="10" className="parallax-frame h-[75svh] min-h-[460px] bg-night">
+          <img
+            src={banner}
+            alt="Due modelle con look minimali su fondo sabbia"
+            width={1920}
+            height={900}
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-foreground/40" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-background">
+            <p data-reveal className="label-wide text-background/85">
+              Chi siamo
+            </p>
+            <h1 data-split className="story-title mt-6 text-[clamp(3rem,9vw,8rem)]">
+              Una boutique, <em>una storia.</em>
+            </h1>
+            <p data-reveal className="mt-6 max-w-lg text-base leading-relaxed text-background/85">
+              Una boutique femminile pensata per chi cerca capi eleganti e facili da indossare.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {chapters.map((c, i) => (
+        <section key={c.n} className="mx-auto max-w-[1400px] px-4 py-20 md:px-6 md:py-36">
+          <div
+            className={`grid items-center gap-10 md:grid-cols-2 md:gap-24 ${
+              i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+            }`}
+          >
+            <div data-parallax="8" className="parallax-frame aspect-4/5 w-full bg-sand">
+              <img src={c.image} alt={c.alt} width={900} height={1200} loading="lazy" />
+            </div>
+            <div>
+              <p data-reveal className="label-wide text-terracotta">
+                Capitolo {c.n}
+              </p>
+              <h2 data-split className="story-title mt-5 text-[clamp(2.4rem,5vw,4.6rem)]">
+                {c.title}
+              </h2>
+              {c.text.map((t) => (
+                <p
+                  key={t}
+                  data-reveal
+                  className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground"
+                >
+                  {t}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <section className="grain relative overflow-hidden bg-night px-6 py-28 text-center text-background md:py-44">
+        <h2 data-split className="story-title relative z-10 text-[clamp(2.6rem,7vw,6rem)]">
+          Adesso tocca <em>a te.</em>
+        </h2>
+        <Link
+          to="/shop"
+          data-reveal
+          className="label-wide relative z-10 mt-10 inline-flex bg-background px-10 py-4 text-foreground transition-colors hover:bg-sand"
+        >
+          Entra in boutique
+        </Link>
+      </section>
     </>
   );
 }

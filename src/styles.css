@@ -19,6 +19,7 @@
 
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,6 +44,13 @@
   --color-sand-deep: var(--sand-deep);
   --color-ink: var(--ink);
   --color-surface: var(--surface);
+  --color-cream: var(--cream);
+  --color-terracotta: var(--terracotta);
+  --color-sun: var(--sun);
+  --color-night: var(--night);
+  --color-lace-blue: var(--lace-blue);
+  --color-poppy: var(--poppy);
+  --color-cocoa: var(--cocoa);
 
   --tracking-wider: 0.14em;
   --tracking-widest: 0.24em;
@@ -72,6 +80,15 @@
   --ring: oklch(0.219 0 0);
   --sand: oklch(0.911 0.019 79.5);
   --sand-deep: oklch(0.86 0.026 79.5);
+  /* Palette narrativa: la giornata mediterranea */
+  --cream: oklch(0.965 0.018 85);
+  --terracotta: oklch(0.6 0.13 45);
+  --sun: oklch(0.84 0.14 85);
+  --night: oklch(0.17 0.01 60);
+  /* Colori dei capi, usati nel capitolo "Pomeriggio" */
+  --lace-blue: oklch(0.82 0.08 215);
+  --poppy: oklch(0.55 0.2 27);
+  --cocoa: oklch(0.3 0.06 40);
 }
 
 .dark {
@@ -96,6 +113,8 @@
   --ring: oklch(0.8 0 0);
   --sand: oklch(0.32 0.01 79.5);
   --sand-deep: oklch(0.36 0.012 79.5);
+  --cream: oklch(0.26 0.01 79.5);
+  --night: oklch(0.12 0.01 60);
 }
 
 @layer base {
@@ -140,4 +159,127 @@
   &:hover::after {
     width: 100%;
   }
+}
+
+/* ---------- Narrazione ed effetti di scroll ---------- */
+
+/* Serif editoriale: voce del racconto, in contrasto con la sans maiuscola dello shop */
+@utility font-serif-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+@utility story-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+/* Maschera per le righe che salgono dal basso (SplitText) */
+.split-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Smooth scroll (Lenis) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* Preloader: copre il primo paint finché la pagina è pronta. Fallback CSS se JS non parte. */
+.preloader {
+  animation: preloader-fallback 0.6s ease 4s forwards;
+}
+@keyframes preloader-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Marquee infinito */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Indicatore di scroll */
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.scroll-line {
+  animation: scroll-line 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Cornice per immagini con parallasse: il wrapper taglia, l'immagine è più alta */
+.parallax-frame {
+  overflow: hidden;
+  position: relative;
+}
+.parallax-frame > img {
+  position: absolute;
+  left: 0;
+  top: -12%;
+  height: 124%;
+  width: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.story-title em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Grana leggera: dà carta e calore alle sezioni a tinta unita */
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }

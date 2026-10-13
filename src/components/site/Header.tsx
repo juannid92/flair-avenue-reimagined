@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Heart, ShoppingBag, User, Repeat, Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/flairavenue-logo-dark.png.asset.json";
 import { useShop } from "@/lib/shop-store";
@@ -25,28 +25,71 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [collectionsOpen, setCollectionsOpen] = useState(false);
 
+  const [hidden, setHidden] = useState(false);
+  const isHome = useRouterState({ select: (st) => st.location.pathname === "/" });
+  // Sulla home l'header galleggia trasparente sopra l'hero, poi diventa pieno
+  const overHero = isHome && !compact && !menuOpen && !collectionsOpen;
+
   const availableCategories = categories.filter((c) => getProductsByCategory(c.slug).length > 0);
 
   useEffect(() => {
-    const onScroll = () => setCompact(window.scrollY > 40);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setCompact(y > 40);
+      // Si nasconde scendendo e riappare risalendo
+      if (y > last + 6 && y > 320) setHidden(true);
+      else if (y < last - 6) setHidden(false);
+      last = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
-      <div className="hidden border-b border-border bg-sand md:block">
+    <header
+      className={`${isHome ? "fixed inset-x-0" : "sticky"} top-0 z-50 border-b transition-[transform,background-color,color,border-color] duration-500 ${
+        hidden && !menuOpen ? "-translate-y-full" : ""
+      } ${
+        overHero
+          ? "border-transparent bg-transparent text-background"
+          : "border-border bg-background text-foreground"
+      }`}
+    >
+      <div
+        className={`hidden border-b transition-colors duration-500 md:block ${
+          overHero ? "border-background/20 bg-transparent" : "border-border bg-sand"
+        }`}
+      >
         <div className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto] items-center gap-4 px-6 py-2">
-          <p className="label-wide text-center text-foreground">
+          <p className="label-wide text-center">
             Spedizione tracciata, pagamenti sicuri e resi semplici
           </p>
-          <div className="flex shrink-0 items-center gap-5 text-[11px] tracking-wide text-muted-foreground">
-            <Link to="/tracciamento-ordine" className="link-underline hover:text-foreground">
+          <div
+            className={`flex shrink-0 items-center gap-5 text-[11px] tracking-wide ${
+              overHero ? "text-background/80" : "text-muted-foreground"
+            }`}
+          >
+            <Link
+              to="/tracciamento-ordine"
+              className={
+                overHero
+                  ? "link-underline hover:text-background"
+                  : "link-underline hover:text-foreground"
+              }
+            >
               Tracciamento dell'ordine
             </Link>
             <span aria-hidden>·</span>
-            <Link to="/chi-siamo" className="link-underline hover:text-foreground">
+            <Link
+              to="/chi-siamo"
+              className={
+                overHero
+                  ? "link-underline hover:text-background"
+                  : "link-underline hover:text-foreground"
+              }
+            >
               Chi siamo
             </Link>
           </div>
@@ -76,16 +119,14 @@ export function Header() {
             alt="FLAIR AVENUE"
             width={600}
             height={80}
-            className={`w-auto transition-all duration-300 ${compact ? "h-4 md:h-5" : "h-5 md:h-8"}`}
+            className={`w-auto transition-all duration-300 ${compact ? "h-4 md:h-5" : "h-5 md:h-8"} ${
+              overHero ? "brightness-0 invert" : ""
+            }`}
           />
         </Link>
 
         <div className="flex items-center justify-end gap-4 md:gap-6">
-          <Link
-            to="/il-mio-account"
-            aria-label="Account"
-            className="hidden text-foreground md:block"
-          >
+          <Link to="/il-mio-account" aria-label="Account" className="hidden md:block">
             <User size={20} strokeWidth={1.25} />
           </Link>
           <Link to="/wishlist" aria-label="Wishlist" className="relative hidden md:block">
@@ -109,16 +150,16 @@ export function Header() {
       </div>
 
       <nav
-        className={`hidden justify-center gap-10 border-t border-border transition-all duration-300 md:flex ${
-          compact ? "py-2" : "py-3"
-        }`}
+        className={`hidden justify-center gap-10 border-t transition-all duration-300 md:flex ${
+          overHero ? "border-background/20" : "border-border"
+        } ${compact ? "py-2" : "py-3"}`}
       >
         {navItems.map((item) => (
           <Link
             key={item.to}
             to={item.to}
-            className="label-wide text-foreground/80 transition-colors hover:text-foreground"
-            activeProps={{ className: "label-wide text-foreground" }}
+            className="label-wide opacity-80 transition-opacity hover:opacity-100"
+            activeProps={{ className: "label-wide" }}
           >
             {item.label}
           </Link>
@@ -131,7 +172,7 @@ export function Header() {
         >
           <button
             type="button"
-            className="label-wide flex items-center gap-1 text-foreground/80 hover:text-foreground"
+            className="label-wide flex items-center gap-1 opacity-80 transition-opacity hover:opacity-100"
             onClick={() => setCollectionsOpen((v) => !v)}
             aria-expanded={collectionsOpen}
           >
@@ -139,7 +180,7 @@ export function Header() {
             <ChevronDown size={12} strokeWidth={1.5} />
           </button>
           {collectionsOpen && (
-            <div className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 border border-border bg-background py-3">
+            <div className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 border border-border bg-background py-3 text-foreground">
               {categories.map((c) =>
                 availableCategories.some((ac) => ac.slug === c.slug) ? (
                   <Link
@@ -158,7 +199,7 @@ export function Header() {
                     <span>{c.name}</span>
                     <span className="label-wide">In arrivo</span>
                   </div>
-                )
+                ),
               )}
             </div>
           )}
@@ -166,15 +207,18 @@ export function Header() {
 
         <Link
           to="/contatti"
-          className="label-wide text-foreground/80 transition-colors hover:text-foreground"
-          activeProps={{ className: "label-wide text-foreground" }}
+          className="label-wide opacity-80 transition-opacity hover:opacity-100"
+          activeProps={{ className: "label-wide" }}
         >
           Contatti
         </Link>
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-background md:hidden">
+        <div
+          data-lenis-prevent
+          className="fixed inset-0 z-50 overflow-y-auto bg-background text-foreground md:hidden"
+        >
           <div className="flex items-center justify-between border-b border-border px-4 py-4">
             <img src={logo.url} alt="FLAIR AVENUE" width={600} height={80} className="h-4 w-auto" />
             <button type="button" aria-label="Chiudi il menu" onClick={() => setMenuOpen(false)}>
@@ -182,7 +226,11 @@ export function Header() {
             </button>
           </div>
           <div className="flex flex-col gap-1 px-6 py-8">
-            <Link to="/shop" onClick={() => setMenuOpen(false)} className="heading-wide py-3 text-lg">
+            <Link
+              to="/shop"
+              onClick={() => setMenuOpen(false)}
+              className="heading-wide py-3 text-lg"
+            >
               Boutique
             </Link>
             <Link
@@ -212,7 +260,7 @@ export function Header() {
                   <span>{c.name}</span>
                   <span className="label-wide">In arrivo</span>
                 </div>
-              )
+              ),
             )}
             <Link
               to="/contatti"
