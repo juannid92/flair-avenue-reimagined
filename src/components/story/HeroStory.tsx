@@ -54,12 +54,12 @@ export function HeroStory() {
       <div className="hero-media absolute inset-0 md:left-[32%]">
         <img
           src={sized(media.hero, 1800)}
-          alt="Modella con corpetto a righe e pantalone ampio"
+          alt="Modella con giacca in pelle marrone e pantalone beige ampio"
           width={1200}
           height={1600}
           loading="eager"
           fetchPriority="high"
-          className="hero-img h-full w-full object-cover object-[50%_18%]"
+          className="hero-img h-full w-full object-cover object-[50%_6%]"
         />
       </div>
       <div className="absolute inset-0 bg-linear-to-t from-night/70 via-night/5 to-night/35" />
