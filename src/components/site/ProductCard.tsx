@@ -3,6 +3,7 @@ import { Heart } from "lucide-react";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/lib/format";
 import { useShop } from "@/lib/shop-store";
+import { sized } from "@/lib/media";
 
 export function ProductCard({ product }: { product: Product }) {
   const { wishlist, toggleWishlist, addToCart, setCartOpen } = useShop();
@@ -14,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative overflow-hidden bg-sand">
         <Link to="/product/$slug" params={{ slug: product.slug }} aria-label={product.name}>
           <img
-            src={product.images[0]}
+            src={sized(product.images[0], 700)}
             alt={product.name}
             width={900}
             height={1200}
@@ -22,7 +23,7 @@ export function ProductCard({ product }: { product: Product }) {
             className="aspect-3/4 w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
           />
           <img
-            src={secondary}
+            src={sized(secondary, 700)}
             alt={`${product.name} — vista alternativa`}
             width={900}
             height={1200}
@@ -49,7 +50,7 @@ export function ProductCard({ product }: { product: Product }) {
         <button
           type="button"
           onClick={() => {
-            addToCart(product.id, { size: product.sizes[1], color: product.colors[0] });
+            addToCart(product.id, { size: product.sizes[1] ?? product.sizes[0], color: product.colors[0] });
             setCartOpen(true);
           }}
           className="label-wide absolute inset-x-3 bottom-3 translate-y-2 bg-primary py-3 text-primary-foreground opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"

@@ -45,7 +45,7 @@ function ProductPage() {
   const { product }: { product: Product } = Route.useLoaderData();
   const { addToCart, setCartOpen, toggleWishlist, toggleCompare, wishlist, compare } = useShop();
   const [activeImage, setActiveImage] = useState(0);
-  const [size, setSize] = useState(product.sizes[1]);
+  const [size, setSize] = useState(product.sizes[1] ?? product.sizes[0]);
   const [color, setColor] = useState(product.colors[0]);
   const [qty, setQty] = useState(1);
   const [open, setOpen] = useState<string | null>("descrizione");
@@ -197,7 +197,7 @@ function ProductPage() {
                   <div className="pb-5 text-sm leading-relaxed text-muted-foreground">
                     {item.id === "descrizione" && product.description}
                     {item.id === "spedizioni" &&
-                      `Spedizione tracciata in ${SHOP.deliveryDays} in tutta Italia. Reso disponibile entro ${SHOP.returnDays} giorni dalla consegna.`}
+                      `Spedizione gratuita in tutta Italia, senza importo minimo: consegna in ${SHOP.deliveryDays} dalla spedizione. Recesso entro ${SHOP.returnDays} giorni dalla consegna.`}
                     {item.id === "taglie" &&
                       "Le taglie seguono la vestibilità italiana standard: XS (38), S (40), M (42), L (44), XL (46). In caso di dubbio scegli la taglia superiore."}
                   </div>

@@ -6,15 +6,25 @@ import { products } from "@/data/products";
 import { formatPrice } from "@/lib/format";
 
 const panels = [
-  { id: "1", word: "Azzurro", note: "Il cielo sopra i tetti.", bg: "bg-lace-blue text-foreground" },
   {
-    id: "2",
+    id: "2540",
+    word: "Azzurro",
+    note: "Il cielo sopra i tetti.",
+    bg: "bg-lace-blue text-foreground",
+  },
+  {
+    id: "2538",
     word: "Giallo",
     note: "Il sole alto, la gonna che si muove.",
     bg: "bg-sun text-foreground",
   },
-  { id: "3", word: "Rosso", note: "La sera che non vuole finire.", bg: "bg-poppy text-background" },
-  { id: "4", word: "Marrone", note: "Il pizzo che sa di casa.", bg: "bg-cocoa text-background" },
+  {
+    id: "3525",
+    word: "Rosso",
+    note: "La sera che non vuole finire.",
+    bg: "bg-poppy text-background",
+  },
+  { id: "2518", word: "Marrone", note: "Il pizzo che sa di casa.", bg: "bg-cocoa text-background" },
 ];
 
 /** Capitolo III — Pomeriggio. Scroll orizzontale pinned: ogni capo ha il suo colore, la sua scena. */

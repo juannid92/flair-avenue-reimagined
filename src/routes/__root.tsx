@@ -9,6 +9,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { ScrollTrigger } from "@/lib/motion";
+import { APPLE_ICON, FAVICON_192, FAVICON_32 } from "@/lib/brand";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -101,7 +102,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: FAVICON_32, sizes: "32x32" },
+      { rel: "icon", href: FAVICON_192, sizes: "192x192" },
+      { rel: "apple-touch-icon", href: APPLE_ICON },
     ],
   }),
   shellComponent: RootShell,

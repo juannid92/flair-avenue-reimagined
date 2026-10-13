@@ -2,8 +2,7 @@ import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion, splitLinesReveal } from "@/lib/motion";
-import t1a from "@/assets/t1-a.jpg";
-import p3b from "@/assets/p3-b.jpg";
+import { media, sized } from "@/lib/media";
 
 /** Epilogo: il racconto si chiude e passa la penna a chi legge. */
 export function Epilogue() {
@@ -52,7 +51,7 @@ export function Epilogue() {
     >
       <div className="e-img-a absolute left-[5%] top-[12%] hidden w-[14vw] max-w-[220px] md:block">
         <img
-          src={t1a}
+          src={sized(media.topHalter, 500)}
           alt=""
           width={900}
           height={1200}
@@ -62,7 +61,7 @@ export function Epilogue() {
       </div>
       <div className="e-img-b absolute bottom-[8%] right-[6%] hidden w-[16vw] max-w-[260px] md:block">
         <img
-          src={p3b}
+          src={sized(media.topSun, 500)}
           alt=""
           width={900}
           height={1200}

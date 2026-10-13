@@ -62,7 +62,7 @@ function ConfrontaPage() {
                   <button
                     type="button"
                     onClick={() => {
-                      addToCart(product.id, { size: product.sizes[1], color: product.colors[0] });
+                      addToCart(product.id, { size: product.sizes[1] ?? product.sizes[0], color: product.colors[0] });
                       setCartOpen(true);
                     }}
                     className="label-wide mt-5 w-full bg-primary py-3 text-primary-foreground"

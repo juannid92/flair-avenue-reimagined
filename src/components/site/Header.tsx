@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Heart, ShoppingBag, User, Repeat, Menu, X, ChevronDown } from "lucide-react";
-import logo from "@/assets/flairavenue-logo-dark.png.asset.json";
+import { LOGO_DARK, LOGO_LIGHT } from "@/lib/brand";
 import { useShop } from "@/lib/shop-store";
 import { categories, getProductsByCategory } from "@/data/products";
 
@@ -64,7 +64,7 @@ export function Header() {
       >
         <div className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto] items-center gap-4 px-6 py-2">
           <p className="label-wide text-center">
-            Spedizione tracciata, pagamenti sicuri e resi semplici
+            Spedizione gratuita in Italia · Resi entro 14 giorni
           </p>
           <div
             className={`flex shrink-0 items-center gap-5 text-[11px] tracking-wide ${
@@ -115,13 +115,11 @@ export function Header() {
 
         <Link to="/" className="justify-self-center" aria-label="FLAIR AVENUE — home">
           <img
-            src={logo.url}
+            src={overHero ? LOGO_LIGHT : LOGO_DARK}
             alt="FLAIR AVENUE"
-            width={600}
-            height={80}
-            className={`w-auto transition-all duration-300 ${compact ? "h-4 md:h-5" : "h-5 md:h-8"} ${
-              overHero ? "brightness-0 invert" : ""
-            }`}
+            width={927}
+            height={63}
+            className={`w-auto transition-all duration-300 ${compact ? "h-4 md:h-5" : "h-5 md:h-7"}`}
           />
         </Link>
 
@@ -220,7 +218,13 @@ export function Header() {
           className="fixed inset-0 z-50 overflow-y-auto bg-background text-foreground md:hidden"
         >
           <div className="flex items-center justify-between border-b border-border px-4 py-4">
-            <img src={logo.url} alt="FLAIR AVENUE" width={600} height={80} className="h-4 w-auto" />
+            <img
+              src={LOGO_DARK}
+              alt="FLAIR AVENUE"
+              width={927}
+              height={63}
+              className="h-4 w-auto"
+            />
             <button type="button" aria-label="Chiudi il menu" onClick={() => setMenuOpen(false)}>
               <X size={22} strokeWidth={1.25} />
             </button>

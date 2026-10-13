@@ -58,16 +58,25 @@ function ContattiPage() {
               className="w-full border border-border bg-background px-4 py-3 text-sm outline-none focus:border-foreground"
             />
           </div>
-          <button type="submit" className="label-wide bg-primary px-10 py-4 text-primary-foreground">
+          <button
+            type="submit"
+            className="label-wide bg-primary px-10 py-4 text-primary-foreground"
+          >
             Invia messaggio
           </button>
         </form>
 
         <div className="space-y-6 text-sm text-muted-foreground">
-          <a href={`mailto:${SHOP.email}`} className="flex items-center gap-3 hover:text-foreground">
+          <a
+            href={`mailto:${SHOP.email}`}
+            className="flex items-center gap-3 hover:text-foreground"
+          >
             <Mail size={18} strokeWidth={1.2} /> info@flairavenue.it
           </a>
-          <a href={`https://wa.me/${SHOP.whatsappNumber}`} className="flex items-center gap-3 hover:text-foreground">
+          <a
+            href={`https://wa.me/${SHOP.whatsappNumber}`}
+            className="flex items-center gap-3 hover:text-foreground"
+          >
             <MessageCircle size={18} strokeWidth={1.2} /> Scrivici su WhatsApp
           </a>
           <a
@@ -79,8 +88,15 @@ function ContattiPage() {
             <Instagram size={18} strokeWidth={1.2} /> @{SHOP.instagram}
           </a>
           <p className="leading-relaxed">
-            Rispondiamo dal lunedì al venerdì, dalle 9:00 alle 18:00. Per le richieste su ordini
-            già effettuati indica sempre il numero d'ordine.
+            Rispondiamo di norma entro 1-2 giorni lavorativi. Per le richieste su ordini già
+            effettuati indica sempre il numero d'ordine.
+          </p>
+          <p className="leading-relaxed">
+            Telefono e WhatsApp: +39 377 352 3682
+            <br />
+            Sede: Via San Francesco S. Tateo 33, 70017 Putignano (BA)
+            <br />
+            PEC: franchiniflair@pec.it
           </p>
         </div>
       </div>

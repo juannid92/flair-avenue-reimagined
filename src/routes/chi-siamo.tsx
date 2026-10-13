@@ -1,9 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageMotion } from "@/components/site/PageMotion";
-import banner from "@/assets/instagram-banner.jpg";
-import catAbiti from "@/assets/cat-abiti.jpg";
-import p4b from "@/assets/p4-b.jpg";
-import t1a from "@/assets/t1-a.jpg";
+import { media, sized } from "@/lib/media";
 
 export const Route = createFileRoute("/chi-siamo")({
   head: () => ({
@@ -30,8 +27,8 @@ const chapters = [
     text: [
       "Flair Avenue nasce in Italia con un'idea semplice: rendere accessibile una moda femminile curata, senza rinunciare alla qualità dei tessuti e all'attenzione ai dettagli.",
     ],
-    image: catAbiti,
-    alt: "Abiti bianchi su un appendiabiti",
+    image: sized(media.dress, 1000),
+    alt: "Abito lungo azzurro in pizzo con spacco",
   },
   {
     n: "II",
@@ -39,8 +36,8 @@ const chapters = [
     text: [
       "Ogni settimana selezioniamo nuovi capi — abiti, top, giacche, gonne e shorts — pensati per costruire un guardaroba versatile, adatto sia al giorno che alla sera.",
     ],
-    image: p4b,
-    alt: "Dettaglio del pizzo di un abito marrone",
+    image: sized(media.laceBrown, 1000),
+    alt: "Abito lungo in pizzo marrone",
   },
   {
     n: "III",
@@ -48,8 +45,8 @@ const chapters = [
     text: [
       "Lavoriamo con spedizioni tracciate, pagamenti protetti e una procedura di reso chiara, perché acquistare online deve essere semplice quanto entrare in negozio.",
     ],
-    image: t1a,
-    alt: "Top in raso avorio indossato di spalle",
+    image: sized(media.topSun, 1000),
+    alt: "Top bianco con stampa sole",
   },
 ];
 
@@ -60,10 +57,10 @@ function ChiSiamoPage() {
       <section className="relative">
         <div data-parallax="10" className="parallax-frame h-[75svh] min-h-[460px] bg-night">
           <img
-            src={banner}
-            alt="Due modelle con look minimali su fondo sabbia"
-            width={1920}
-            height={900}
+            src={sized(media.topHalterBrown, 1800)}
+            alt="Modella con top halter marrone"
+            width={1200}
+            height={1600}
             loading="eager"
           />
           <div className="absolute inset-0 bg-foreground/40" />

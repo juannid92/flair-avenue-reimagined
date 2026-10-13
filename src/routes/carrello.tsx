@@ -93,7 +93,7 @@ function CarrelloPage() {
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
                 {missing > 0
                   ? `Aggiungi ${formatPrice(missing)} al carrello per ottenere la spedizione gratuita`
-                  : "Spedizione gratuita inclusa"}
+                  : "Spedizione gratuita in tutta Italia, senza importo minimo"}
               </p>
               <button type="button" className="label-wide mt-6 w-full bg-primary py-4 text-primary-foreground">
                 Procedi al pagamento

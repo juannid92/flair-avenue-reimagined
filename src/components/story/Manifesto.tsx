@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion, splitWordsScrub } from "@/lib/motion";
-import catAbiti from "@/assets/cat-abiti.jpg";
-import catTop from "@/assets/cat-top.jpg";
+import { media, sized } from "@/lib/media";
 
 /** Prologo: il manifesto si "accende" parola per parola mentre si scorre. */
 export function Manifesto() {
@@ -54,7 +53,7 @@ export function Manifesto() {
       </div>
 
       <img
-        src={catAbiti}
+        src={sized(media.dress, 500)}
         alt=""
         width={900}
         height={1200}
@@ -62,7 +61,7 @@ export function Manifesto() {
         className="float-a absolute left-[3%] top-[55%] hidden w-[13vw] max-w-[200px] object-cover md:block"
       />
       <img
-        src={catTop}
+        src={sized(media.topHalter, 500)}
         alt=""
         width={900}
         height={1200}

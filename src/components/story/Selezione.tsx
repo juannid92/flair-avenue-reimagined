@@ -4,7 +4,7 @@ import { gsap, prefersReducedMotion, splitLinesReveal } from "@/lib/motion";
 import { products, type CategorySlug } from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
 
-const FEATURED = ["1", "2", "3", "4"];
+const FEATURED = ["2540", "2538", "3525", "2518"];
 
 /** Capitolo IV — Sera. La boutique: dopo la storia, la scelta. */
 export function Selezione() {

@@ -4,12 +4,12 @@ import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
 import { products } from "@/data/products";
 import { formatPrice } from "@/lib/format";
-import p4b from "@/assets/p4-b.jpg";
+import { media, sized } from "@/lib/media";
 
 /** Capitolo II — Mezzogiorno. Pinned: il pizzo si apre a cerchio, poi sale il sipario sull'abito. */
 export function ChapterLace() {
   const root = useRef<HTMLElement>(null);
-  const product = products.find((p) => p.id === "1")!;
+  const product = products.find((p) => p.id === "2540")!;
 
   useGSAP(
     () => {
@@ -70,8 +70,8 @@ export function ChapterLace() {
     >
       <div className="l-circle absolute inset-0">
         <img
-          src={p4b}
-          alt="Dettaglio del pizzo su un abito marrone"
+          src={sized(media.lace, 1800)}
+          alt="Dettaglio del pizzo su un abito leopardato"
           width={900}
           height={1200}
           loading="lazy"

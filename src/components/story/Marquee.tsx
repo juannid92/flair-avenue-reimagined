@@ -1,8 +1,8 @@
 const defaultItems = [
   "Tutte le settimane nuovi arrivi",
-  "Spedizione tracciata",
+  "Spedizione gratuita in Italia",
   "Pagamenti sicuri",
-  "Resi semplici",
+  "Resi entro 14 giorni",
   "Assistenza rapida",
 ];
 

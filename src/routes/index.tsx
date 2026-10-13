@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
-import instagramBanner from "@/assets/instagram-banner.jpg";
+import { media, sized } from "@/lib/media";
 import { SHOP } from "@/lib/shop-config";
 import { categories } from "@/data/products";
 import { HeroStory } from "@/components/story/HeroStory";
@@ -21,12 +21,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Abiti, top e collezioni femminili con nuovi arrivi ogni settimana. Spedizione tracciata, pagamenti sicuri e resi semplici.",
+          "Abiti, top e collezioni femminili con nuovi arrivi ogni settimana. Spedizione gratuita in Italia, pagamenti sicuri e resi entro 14 giorni.",
       },
       { property: "og:title", content: "Flair Avenue — Boutique fashion femminile online" },
       {
         property: "og:description",
-        content: "Nuovi arrivi ogni settimana. Spedizione tracciata e resi semplici.",
+        content:
+          "Nuovi arrivi ogni settimana. Spedizione gratuita in Italia e resi entro 14 giorni.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -38,20 +39,24 @@ export const Route = createFileRoute("/")({
 const trust = [
   {
     icon: Truck,
-    title: "Spedizione chiara",
-    text: "Costi e tempi sempre visibili prima del checkout.",
+    title: "Spedizione gratuita",
+    text: "In tutta Italia, senza importo minimo. Consegna in 2-5 giorni lavorativi.",
   },
   {
     icon: ShieldCheck,
     title: "Pagamenti sicuri",
-    text: "Transazioni protette e metodi di pagamento affidabili.",
+    text: "Transazioni protette: i metodi attivi sono mostrati al checkout.",
   },
   {
     icon: RotateCcw,
     title: "Resi semplici",
-    text: "Informazioni sul reso consultabili prima dell'acquisto.",
+    text: "Recesso entro 14 giorni dalla consegna, senza dover dare una motivazione.",
   },
-  { icon: Headset, title: "Assistenza rapida", text: "Supporto veloce per ordini, taglie e resi." },
+  {
+    icon: Headset,
+    title: "Assistenza rapida",
+    text: "Scrivici su WhatsApp o via email per ordini, taglie e resi.",
+  },
 ];
 
 const writtenNumber: Record<number, string> = {
@@ -100,10 +105,10 @@ function Home() {
           className="parallax-frame h-[70svh] min-h-[460px] w-full bg-night"
         >
           <img
-            src={instagramBanner}
-            alt="Due modelle con look minimali su fondo sabbia"
-            width={1920}
-            height={900}
+            src={sized(media.banner, 1800)}
+            alt="Modella con canotta e jeans con frange"
+            width={1800}
+            height={2400}
             loading="lazy"
           />
           <div className="absolute inset-0 bg-foreground/35" />
@@ -137,11 +142,11 @@ function Home() {
             {catText}
           </p>
 
-          <div className="mt-14 grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-3">
             {categories.map((category, i) => {
               const hasProducts = category.count > 0 && !category.comingSoon;
               const productLabel = category.count === 1 ? "prodotto" : "prodotti";
-              const offset = i % 2 === 1 ? "lg:mt-20" : "";
+              const offset = i % 3 === 1 ? "lg:mt-20" : "";
               return hasProducts ? (
                 <Link
                   key={category.slug}
@@ -152,7 +157,7 @@ function Home() {
                 >
                   <div data-parallax="6" className="parallax-frame aspect-3/4 bg-sand">
                     <img
-                      src={category.image}
+                      src={sized(category.image, 1000)}
                       alt={category.name}
                       width={900}
                       height={1200}

@@ -17,6 +17,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PoliticaDiResoRouteImport } from './routes/politica-di-reso'
 import { Route as NovitaRouteImport } from './routes/novita'
 import { Route as IlMioAccountRouteImport } from './routes/il-mio-account'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContattiRouteImport } from './routes/contatti'
 import { Route as ConfrontaRouteImport } from './routes/confronta'
 import { Route as ChiSiamoRouteImport } from './routes/chi-siamo'
@@ -65,6 +66,11 @@ const IlMioAccountRoute = IlMioAccountRouteImport.update({
   path: '/il-mio-account',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContattiRoute = ContattiRouteImport.update({
   id: '/contatti',
   path: '/contatti',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/chi-siamo': typeof ChiSiamoRoute
   '/confronta': typeof ConfrontaRoute
   '/contatti': typeof ContattiRoute
+  '/faq': typeof FaqRoute
   '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
   '/politica-di-reso': typeof PoliticaDiResoRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/chi-siamo': typeof ChiSiamoRoute
   '/confronta': typeof ConfrontaRoute
   '/contatti': typeof ContattiRoute
+  '/faq': typeof FaqRoute
   '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
   '/politica-di-reso': typeof PoliticaDiResoRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/chi-siamo': typeof ChiSiamoRoute
   '/confronta': typeof ConfrontaRoute
   '/contatti': typeof ContattiRoute
+  '/faq': typeof FaqRoute
   '/il-mio-account': typeof IlMioAccountRoute
   '/novita': typeof NovitaRoute
   '/politica-di-reso': typeof PoliticaDiResoRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/chi-siamo'
     | '/confronta'
     | '/contatti'
+    | '/faq'
     | '/il-mio-account'
     | '/novita'
     | '/politica-di-reso'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/chi-siamo'
     | '/confronta'
     | '/contatti'
+    | '/faq'
     | '/il-mio-account'
     | '/novita'
     | '/politica-di-reso'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/chi-siamo'
     | '/confronta'
     | '/contatti'
+    | '/faq'
     | '/il-mio-account'
     | '/novita'
     | '/politica-di-reso'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   ChiSiamoRoute: typeof ChiSiamoRoute
   ConfrontaRoute: typeof ConfrontaRoute
   ContattiRoute: typeof ContattiRoute
+  FaqRoute: typeof FaqRoute
   IlMioAccountRoute: typeof IlMioAccountRoute
   NovitaRoute: typeof NovitaRoute
   PoliticaDiResoRoute: typeof PoliticaDiResoRoute
@@ -283,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IlMioAccountRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contatti': {
       id: '/contatti'
       path: '/contatti'
@@ -341,6 +361,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChiSiamoRoute: ChiSiamoRoute,
   ConfrontaRoute: ConfrontaRoute,
   ContattiRoute: ContattiRoute,
+  FaqRoute: FaqRoute,
   IlMioAccountRoute: IlMioAccountRoute,
   NovitaRoute: NovitaRoute,
   PoliticaDiResoRoute: PoliticaDiResoRoute,

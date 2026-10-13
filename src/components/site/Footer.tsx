@@ -1,25 +1,25 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Mail, Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
-import logo from "@/assets/flairavenue-logo-dark.png.asset.json";
+import { LOGO_DARK } from "@/lib/brand";
 import { SHOP } from "@/lib/shop-config";
 
 const perks = [
   {
     icon: Truck,
-    title: "Spedizione tracciata",
-    text: "Costi e tempi sempre visibili prima del checkout.",
+    title: "Spedizione gratuita",
+    text: "In tutta Italia, senza importo minimo. Consegna in 2-5 giorni lavorativi.",
     to: "/tracciamento-ordine" as const,
   },
   {
     icon: ShieldCheck,
     title: "Pagamenti sicuri",
-    text: "Transazioni protette con carta e Klarna.",
+    text: "I metodi di pagamento attivi sono mostrati al checkout.",
     to: "/termini-e-condizioni" as const,
   },
   {
     icon: RotateCcw,
     title: "Resi semplici",
-    text: "Informazioni sul reso consultabili prima dell'acquisto.",
+    text: "Recesso entro 14 giorni dalla consegna.",
     to: "/politica-di-reso" as const,
   },
   {
@@ -53,7 +53,7 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-[1400px] gap-10 px-4 py-14 md:grid-cols-[1.2fr_1fr_1fr_1fr] md:px-6">
         <div>
-          <img src={logo.url} alt="FLAIR AVENUE" width={600} height={80} className="h-5 w-auto" loading="lazy" />
+          <img src={LOGO_DARK} alt="FLAIR AVENUE" width={927} height={63} className="h-5 w-auto" loading="lazy" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
             Boutique fashion femminile online. Nuovi arrivi ogni settimana, selezione curata e
             spedizione in tutta Italia.
@@ -131,6 +131,11 @@ export function Footer() {
                 Politica di reso
               </Link>
             </li>
+            <li>
+              <Link to="/faq" className="hover:text-foreground">
+                FAQ
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -159,7 +164,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-2 px-4 py-6 text-xs tracking-wide text-muted-foreground md:flex-row md:px-6">
           <p>© {new Date().getFullYear()} Flair Avenue. Tutti i diritti riservati.</p>
-          <p>P.IVA 00000000000 — flairavenue.it</p>
+          <p>Franchini Federica, impresa individuale · P.IVA 09192060722 · Putignano (BA)</p>
         </div>
       </div>
     </footer>

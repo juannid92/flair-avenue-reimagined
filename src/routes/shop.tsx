@@ -24,15 +24,28 @@ export const Route = createFileRoute("/shop")({
   component: ShopPage,
 });
 
-const taglie = ["XS", "S", "M", "L", "XL"];
-const colori = ["Azzurro", "Giallo", "Rosso", "Marrone", "Avorio", "Nero", "Crema"];
+const taglie = Array.from(new Set(products.flatMap((p) => p.sizes))).sort((a, b) => {
+  const order = ["XS", "S", "S/M", "M", "M/L", "L", "XL", "Unica"];
+  const rank = (v: string) => (order.indexOf(v) === -1 ? order.length : order.indexOf(v));
+  return rank(a) - rank(b) || a.localeCompare(b);
+});
+/** Colori presenti in almeno due prodotti, i più frequenti per primi. */
+const colori = (() => {
+  const counts = new Map<string, number>();
+  products.forEach((p) => p.colors.forEach((c) => counts.set(c, (counts.get(c) ?? 0) + 1)));
+  return [...counts.entries()]
+    .filter(([c, n]) => n >= 2 && c !== "Come in foto")
+    .sort((a, b) => b[1] - a[1])
+    .map(([c]) => c);
+})();
+const MAX_PRICE = Math.ceil(Math.max(...products.map((p) => p.price)) / 5) * 5;
 type Sort = "novita" | "prezzo-asc" | "prezzo-desc";
 
 function ShopPage() {
   const [cats, setCats] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
-  const [maxPrice, setMaxPrice] = useState(50);
+  const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
   const [sort, setSort] = useState<Sort>("novita");
   const [drawer, setDrawer] = useState(false);
 
@@ -114,8 +127,8 @@ function ShopPage() {
         <legend className="label-wide mb-4">Prezzo massimo</legend>
         <input
           type="range"
-          min={10}
-          max={50}
+          min={5}
+          max={MAX_PRICE}
           step={5}
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
@@ -129,7 +142,10 @@ function ShopPage() {
 
   return (
     <>
-      <PageHeader title="Boutique" subtitle="Tutti i capi disponibili, selezionati ogni settimana." />
+      <PageHeader
+        title="Boutique"
+        subtitle="Tutti i capi disponibili, selezionati ogni settimana."
+      />
 
       <div className="mx-auto max-w-[1400px] px-4 py-12 md:px-6">
         <div className="mb-8 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">

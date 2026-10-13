@@ -2,8 +2,7 @@ import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
-import catAbiti from "@/assets/cat-abiti.jpg";
-import catTop from "@/assets/cat-top.jpg";
+import { media, sized } from "@/lib/media";
 
 /** Capitolo I — Mattina. Sezione pinned: due immagini e due passaggi di testo si danno il cambio. */
 export function ChapterWardrobe() {
@@ -65,8 +64,8 @@ export function ChapterWardrobe() {
     >
       <div className="relative aspect-4/5 overflow-hidden md:aspect-auto">
         <img
-          src={catAbiti}
-          alt="Abiti bianchi appesi su un appendiabiti alla luce del mattino"
+          src={sized(media.dress, 1000)}
+          alt="Abito lungo azzurro in pizzo con spacco, indossato"
           width={900}
           height={1200}
           loading="lazy"
@@ -74,8 +73,8 @@ export function ChapterWardrobe() {
         />
         <div className="w-layer-2 absolute inset-0 hidden md:block">
           <img
-            src={catTop}
-            alt="Top in raso piegati sul letto"
+            src={sized(media.topSun, 1000)}
+            alt="Top bianco e nero con stampa sole"
             width={900}
             height={1200}
             loading="lazy"
@@ -100,11 +99,11 @@ export function ChapterWardrobe() {
 
           <div className="relative mt-8 max-w-md md:min-h-36">
             <p className="w-step-1 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Si comincia sempre da lì: un appendiabiti, la luce che entra di sbieco, quel bianco
-              che sa già di estate.
+              Si comincia sempre da lì: un abito scelto la sera prima, la luce che entra di sbieco,
+              quell'azzurro che sa già di estate.
             </p>
             <p className="w-step-2 mt-5 text-base leading-relaxed text-muted-foreground md:absolute md:inset-x-0 md:top-0 md:mt-0 md:text-lg">
-              Poi quello che resta piegato sul letto. Pochi pezzi, provati e scelti a mano: solo
+              Poi qualcosa di semplice da abbinare. Pochi pezzi, provati e scelti a mano: solo
               quello che serve a una giornata che comincia bene.
             </p>
           </div>

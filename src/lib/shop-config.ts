@@ -1,9 +1,9 @@
 export const SHOP = {
-  freeShippingThreshold: 49,
-  shippingCost: 4.9,
-  deliveryDays: "2-4 giorni lavorativi",
+  freeShippingThreshold: 0,
+  shippingCost: 0,
+  deliveryDays: "2-5 giorni lavorativi",
   returnDays: 14,
-  whatsappNumber: "393331234567",
+  whatsappNumber: "393773523682",
   email: "info@flairavenue.it",
   instagram: "flair___avenue",
 } as const;

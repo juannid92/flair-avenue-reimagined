@@ -9,7 +9,10 @@ export function CartDrawer() {
     useShop();
 
   const missing = Math.max(0, SHOP.freeShippingThreshold - cartTotal);
-  const progress = Math.min(100, (cartTotal / SHOP.freeShippingThreshold) * 100);
+  const progress =
+    SHOP.freeShippingThreshold > 0
+      ? Math.min(100, (cartTotal / SHOP.freeShippingThreshold) * 100)
+      : 100;
 
   return (
     <>
@@ -37,7 +40,7 @@ export function CartDrawer() {
           <p className="text-xs tracking-wide text-muted-foreground">
             {missing > 0
               ? `Aggiungi ${formatPrice(missing)} al carrello per ottenere la spedizione gratuita`
-              : "Hai ottenuto la spedizione gratuita"}
+              : "Spedizione gratuita in tutta Italia, senza importo minimo"}
           </p>
           <div className="mt-3 h-[3px] w-full bg-sand">
             <div className="h-full bg-primary transition-all duration-500" style={{ width: `${progress}%` }} />

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useGSAP } from "@gsap/react";
 import { gsap, onReady, prefersReducedMotion, splitLinesReveal } from "@/lib/motion";
-import hero from "@/assets/hero.jpg";
+import { media, sized } from "@/lib/media";
 
 /** Apertura: l'immagine resta ferma mentre il racconto le scorre sopra come un sipario. */
 export function HeroStory() {
@@ -51,15 +51,15 @@ export function HeroStory() {
       ref={root}
       className="relative z-0 h-svh min-h-[560px] w-full overflow-hidden bg-night text-background"
     >
-      <div className="hero-media absolute inset-0">
+      <div className="hero-media absolute inset-0 md:left-[32%]">
         <img
-          src={hero}
-          alt="Modella con abito lungo in una via mediterranea"
-          width={1920}
-          height={1080}
+          src={sized(media.hero, 1800)}
+          alt="Modella con corpetto a righe e pantalone ampio"
+          width={1200}
+          height={1600}
           loading="eager"
           fetchPriority="high"
-          className="hero-img h-full w-full object-cover"
+          className="hero-img h-full w-full object-cover object-[50%_18%]"
         />
       </div>
       <div className="absolute inset-0 bg-linear-to-t from-night/70 via-night/5 to-night/35" />
