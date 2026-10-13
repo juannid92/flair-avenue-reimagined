@@ -30,8 +30,11 @@ function ConfrontaPage() {
         {items.length === 0 ? (
           <div className="py-16 text-center">
             <p className="text-sm text-muted-foreground">Non ci sono prodotti da confrontare.</p>
-            <Link to="/shop" className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground">
-              Scopri la boutique
+            <Link
+              to="/shop"
+              className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground"
+            >
+              Vai allo shop
             </Link>
           </div>
         ) : (
@@ -62,7 +65,10 @@ function ConfrontaPage() {
                   <button
                     type="button"
                     onClick={() => {
-                      addToCart(product.id, { size: product.sizes[1] ?? product.sizes[0], color: product.colors[0] });
+                      addToCart(product.id, {
+                        size: product.sizes[1] ?? product.sizes[0],
+                        color: product.colors[0],
+                      });
                       setCartOpen(true);
                     }}
                     className="label-wide mt-5 w-full bg-primary py-3 text-primary-foreground"

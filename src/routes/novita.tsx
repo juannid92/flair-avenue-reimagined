@@ -9,8 +9,7 @@ export const Route = createFileRoute("/novita")({
       { title: "Novità — Nuovi arrivi settimanali | Flair Avenue" },
       {
         name: "description",
-        content:
-          "I nuovi arrivi Flair Avenue: abiti e top aggiunti ogni settimana alla boutique online.",
+        content: "I nuovi arrivi Flair Avenue: i capi aggiunti ogni settimana allo shop online.",
       },
       { property: "og:title", content: "Novità — Nuovi arrivi settimanali | Flair Avenue" },
       { property: "og:description", content: "Nuovi capi femminili ogni settimana." },
@@ -26,7 +25,7 @@ function NovitaPage() {
 
   return (
     <>
-      <PageHeader title="Novità" subtitle="Tutte le settimane nuovi arrivi nella boutique." />
+      <PageHeader title="Novità" subtitle="Tutte le settimane nuovi arrivi." />
       <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-6">
         <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 lg:grid-cols-4">
           {items.map((product) => (

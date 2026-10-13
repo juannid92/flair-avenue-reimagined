@@ -56,8 +56,12 @@ function ProductPage() {
   const [open, setOpen] = useState<string | null>("descrizione");
 
   const related = [
-    ...products.filter((p) => p.id !== product.id && p.category === product.category),
-    ...products.filter((p) => p.id !== product.id && p.category !== product.category),
+    ...products.filter(
+      (p) => p.id !== product.id && p.category === product.category && p.season === product.season,
+    ),
+    ...products.filter(
+      (p) => p.id !== product.id && p.category !== product.category && p.season === product.season,
+    ),
   ].slice(0, 4);
 
   return (
@@ -241,7 +245,7 @@ function ProductPage() {
           </div>
           <div className="mt-12 text-center">
             <Link to="/shop" className="label-wide border border-border px-8 py-4">
-              Torna alla boutique
+              Torna allo shop
             </Link>
           </div>
         </section>

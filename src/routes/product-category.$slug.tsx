@@ -61,7 +61,9 @@ function CategoryPage() {
     <>
       <PageHeader
         title={category.name}
-        subtitle={items.length > 0 ? `${items.length} capi disponibili nella collezione.` : undefined}
+        subtitle={
+          items.length > 0 ? `${items.length} capi disponibili nella collezione.` : undefined
+        }
       />
       <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-6">
         {items.length > 0 ? (
@@ -75,11 +77,8 @@ function CategoryPage() {
             <p className="text-sm text-muted-foreground">
               Presto nuovi arrivi in questa categoria.
             </p>
-            <Link
-              to="/shop"
-              className="label-wide bg-primary px-10 py-4 text-primary-foreground"
-            >
-              Vedi tutta la boutique
+            <Link to="/shop" className="label-wide bg-primary px-10 py-4 text-primary-foreground">
+              Vedi tutto lo shop
             </Link>
           </div>
         )}

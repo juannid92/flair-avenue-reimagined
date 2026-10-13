@@ -1,7 +1,14 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SlidersHorizontal, X } from "lucide-react";
-import { products, categories, type Product } from "@/data/products";
+import {
+  products,
+  categories,
+  SEASONS,
+  CURRENT_SEASON,
+  type Product,
+  type Season,
+} from "@/data/products";
 import { ProductCard } from "@/components/site/ProductCard";
 import { PageHeader } from "@/components/site/PageShell";
 import { formatPrice } from "@/lib/format";
@@ -13,7 +20,7 @@ export const Route = createFileRoute("/shop")({
       {
         name: "description",
         content:
-          "Sfoglia tutta la boutique Flair Avenue: abiti, top, giacche e gonne. Filtra per categoria, taglia, colore e prezzo.",
+          "Sfoglia lo shop Flair Avenue: abiti, top, jeans, giacche e gonne. Filtra per categoria, taglia, colore e prezzo.",
       },
       { property: "og:title", content: "Boutique — Tutti i capi | Flair Avenue" },
       { property: "og:description", content: "Abiti, top, giacche e gonne selezionati." },
@@ -47,6 +54,7 @@ function ShopPage() {
   const [colors, setColors] = useState<string[]>([]);
   const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
   const [sort, setSort] = useState<Sort>("novita");
+  const [season, setSeason] = useState<Season | "all">(CURRENT_SEASON);
   const [drawer, setDrawer] = useState(false);
 
   const toggle = (list: string[], set: (v: string[]) => void, value: string) =>
@@ -58,6 +66,7 @@ function ShopPage() {
         (cats.length === 0 || cats.includes(p.category)) &&
         (sizes.length === 0 || p.sizes.some((s) => sizes.includes(s))) &&
         (colors.length === 0 || p.colors.some((c) => colors.includes(c))) &&
+        (season === "all" || p.season === season) &&
         p.price <= maxPrice,
     );
     return [...result].sort((a, b) => {
@@ -65,7 +74,7 @@ function ShopPage() {
       if (sort === "prezzo-desc") return b.price - a.price;
       return b.createdAt.localeCompare(a.createdAt);
     });
-  }, [cats, sizes, colors, maxPrice, sort]);
+  }, [cats, sizes, colors, maxPrice, sort, season]);
 
   const filters = (
     <div className="space-y-10">
@@ -144,10 +153,27 @@ function ShopPage() {
     <>
       <PageHeader
         title="Boutique"
-        subtitle="Tutti i capi disponibili, selezionati ogni settimana."
+        subtitle="Collezione Fall/Winter 2026: tutti i capi disponibili."
       />
 
       <div className="mx-auto max-w-[1400px] px-4 py-12 md:px-6">
+        <div className="mb-6 flex flex-wrap gap-2">
+          {[...SEASONS, { id: "all" as const, label: "Tutto" }].map((s) => (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => setSeason(s.id)}
+              aria-pressed={season === s.id}
+              className={`label-wide border px-4 py-2 transition-colors ${
+                season === s.id
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border text-muted-foreground hover:border-foreground"
+              }`}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
         <div className="mb-8 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
           <p className="min-w-0 truncate text-xs tracking-wide text-muted-foreground">
             {filtered.length} prodotti

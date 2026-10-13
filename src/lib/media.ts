@@ -16,8 +16,10 @@ export function sized(url: string, width: number): string {
 }
 
 export const media = {
-  /** Corpetto a righe — apertura */
+  /** Hero Fall/Winter 2026: tre look */
   hero: photo("3095"),
+  heroLeft: photo("3340"),
+  heroRight: photo("3005"),
   /** Abito lungo azzurro in pizzo con spacco */
   dress: photo("2848"),
   /** Top con stampa sole */
@@ -30,6 +32,6 @@ export const media = {
   lace: photo("2800"),
   /** Abito lungo in pizzo marrone */
   laceBrown: photo("2518"),
-  /** Canotta e jeans con frange — banner */
-  banner: photo("2502"),
+  /** Giacca in pelle marrone — banner Instagram */
+  banner: photo("2987", 1),
 };

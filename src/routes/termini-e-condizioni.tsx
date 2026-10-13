@@ -8,7 +8,7 @@ export const Route = createFileRoute("/termini-e-condizioni")({
       { title: "Termini e condizioni | Flair Avenue" },
       {
         name: "description",
-        content: "Termini e condizioni di vendita della boutique online Flair Avenue.",
+        content: "Termini e condizioni di vendita del negozio online Flair Avenue.",
       },
       { property: "og:title", content: "Termini e condizioni | Flair Avenue" },
       { property: "og:description", content: "Condizioni di vendita e pagamenti." },

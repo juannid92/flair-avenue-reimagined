@@ -2,32 +2,24 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Truck, ShieldCheck, RotateCcw, Headset } from "lucide-react";
 import { media, sized } from "@/lib/media";
 import { SHOP } from "@/lib/shop-config";
-import { categories } from "@/data/products";
-import { HeroStory } from "@/components/story/HeroStory";
-import { Manifesto } from "@/components/story/Manifesto";
-import { ChapterWardrobe } from "@/components/story/ChapterWardrobe";
-import { ChapterLace } from "@/components/story/ChapterLace";
-import { ChapterColors } from "@/components/story/ChapterColors";
-import { Selezione } from "@/components/story/Selezione";
-import { Marquee } from "@/components/story/Marquee";
-import { Epilogue } from "@/components/story/Epilogue";
+import { CURRENT_SEASON, categories, products } from "@/data/products";
+import { HomeHero } from "@/components/home/HomeHero";
+import { ProductCard } from "@/components/site/ProductCard";
 import { PageMotion } from "@/components/site/PageMotion";
-import { StoryProgress } from "@/components/story/StoryProgress";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Flair Avenue — Boutique fashion femminile online" },
+      { title: "Flair Avenue — Abbigliamento donna online" },
       {
         name: "description",
         content:
-          "Abiti, top e collezioni femminili con nuovi arrivi ogni settimana. Spedizione gratuita in Italia, pagamenti sicuri e resi entro 14 giorni.",
+          "Abiti, top, jeans e giacche da donna. Collezione Fall/Winter 2026, spedizione gratuita in Italia e resi entro 14 giorni.",
       },
-      { property: "og:title", content: "Flair Avenue — Boutique fashion femminile online" },
+      { property: "og:title", content: "Flair Avenue — Abbigliamento donna online" },
       {
         property: "og:description",
-        content:
-          "Nuovi arrivi ogni settimana. Spedizione gratuita in Italia e resi entro 14 giorni.",
+        content: "Nuovi arrivi Fall/Winter 2026. Spedizione gratuita in Italia.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -39,157 +31,130 @@ export const Route = createFileRoute("/")({
 const trust = [
   {
     icon: Truck,
-    title: "Spedizione gratuita",
-    text: "In tutta Italia, senza importo minimo. Consegna in 2-5 giorni lavorativi.",
+    title: "Spedizione chiara",
+    text: "Spedizione standard gratuita in Italia, senza minimo d'ordine.",
   },
   {
     icon: ShieldCheck,
     title: "Pagamenti sicuri",
-    text: "Transazioni protette: i metodi attivi sono mostrati al checkout.",
+    text: "Transazioni protette e metodi di pagamento affidabili.",
   },
   {
     icon: RotateCcw,
     title: "Resi semplici",
-    text: "Recesso entro 14 giorni dalla consegna, senza dover dare una motivazione.",
+    text: "Recesso entro 14 giorni dalla consegna.",
   },
-  {
-    icon: Headset,
-    title: "Assistenza rapida",
-    text: "Scrivici su WhatsApp o via email per ordini, taglie e resi.",
-  },
+  { icon: Headset, title: "Assistenza rapida", text: "Supporto veloce per ordini, taglie e resi." },
 ];
 
-const writtenNumber: Record<number, string> = {
-  1: "una",
-  2: "due",
-  3: "tre",
-  4: "quattro",
-};
-
 function Home() {
-  const withProducts = categories.filter((c) => c.count > 0 && !c.comingSoon);
-  const catCount = withProducts.length;
-  const catText =
-    catCount >= 1 && catCount <= 4
-      ? `${writtenNumber[catCount] || catCount} punti di partenza per costruire un look femminile, facile da acquistare.`
-      : "Punti di partenza per costruire un look femminile, facile da acquistare.";
+  const selection = products
+    .filter((p) => p.season === CURRENT_SEASON)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || Number(b.id) - Number(a.id))
+    .slice(0, 8);
+  const shownCategories = categories.filter((c) => c.count > 0);
 
   return (
     <>
-      <HeroStory />
-      <Manifesto />
-      <ChapterWardrobe />
-      <ChapterLace />
-      <ChapterColors />
-      <Selezione />
+      <PageMotion />
+      <HomeHero />
 
-      <div className="relative z-10 bg-background">
-        <Marquee />
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-6 px-4 py-8 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
+          {trust.map((item) => (
+            <div key={item.title} data-reveal className="flex items-start gap-3">
+              <item.icon size={22} strokeWidth={1.2} className="mt-0.5 shrink-0" />
+              <p className="text-sm leading-relaxed">
+                <span className="font-semibold">{item.title}</span>
+                <span className="block text-muted-foreground">{item.text}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        <section className="border-b border-border">
-          <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-x-6 gap-y-10 px-4 py-14 md:grid-cols-4 md:px-6">
-            {trust.map((item) => (
-              <div key={item.title} data-reveal className="text-center">
-                <item.icon size={26} strokeWidth={1} className="mx-auto" />
-                <h3 className="label-wide mt-4">{item.title}</h3>
-                <p className="mx-auto mt-3 max-w-[220px] text-xs leading-relaxed text-muted-foreground">
-                  {item.text}
-                </p>
-              </div>
+      <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+        <div data-reveal className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="label-wide text-muted-foreground">Fall/Winter 2026</p>
+            <h2 className="story-title mt-2 text-[clamp(2.2rem,5vw,4rem)]">Selezione Flair</h2>
+          </div>
+          <Link to="/novita" className="link-underline label-wide">
+            Vedi tutti i nuovi arrivi
+          </Link>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 lg:grid-cols-4">
+          {selection.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-cream">
+        <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+          <h2 data-reveal className="story-title text-[clamp(2.2rem,5vw,4rem)]">
+            Cerca per categoria
+          </h2>
+          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-6">
+            {shownCategories.map((category) => (
+              <Link
+                key={category.slug}
+                to="/product-category/$slug"
+                params={{ slug: category.slug }}
+                data-reveal
+                className="group block"
+              >
+                <div className="aspect-3/4 overflow-hidden bg-sand">
+                  <img
+                    src={sized(category.image, 600)}
+                    alt={category.name}
+                    width={600}
+                    height={800}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="heading-wide mt-4 text-sm">
+                  {category.name}
+                  <sup className="ml-1 text-[10px] text-muted-foreground">{category.count}</sup>
+                </h3>
+              </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section
-          data-parallax="10"
-          className="parallax-frame h-[70svh] min-h-[460px] w-full bg-night"
+      <section className="grid md:grid-cols-2">
+        <div
+          data-parallax="8"
+          className="parallax-frame order-1 aspect-4/5 bg-night md:order-none md:aspect-auto md:min-h-[560px]"
         >
           <img
-            src={sized(media.banner, 1800)}
-            alt="Modella con canotta e jeans con frange"
-            width={1800}
-            height={2400}
+            src={sized(media.banner, 1400)}
+            alt="Giacca in pelle marrone"
+            width={1200}
+            height={1600}
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-foreground/35" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-background">
-            <p data-reveal className="label-wide text-background/85">
-              Ogni giorno, una nuova scena
-            </p>
-            <h2 data-split className="story-title mt-5 text-[clamp(2.8rem,8vw,7rem)]">
-              Ispirati <em>ogni giorno</em>
-            </h2>
-            <a
-              data-reveal
-              href={`https://www.instagram.com/${SHOP.instagram}/`}
-              target="_blank"
-              rel="noreferrer"
-              className="label-wide mt-8 inline-flex border border-background px-10 py-4 transition-colors hover:bg-background hover:text-foreground"
-            >
-              Seguici su Instagram ⭐
-            </a>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-[1400px] px-4 py-20 md:px-6 md:py-32">
-          <h2 data-split className="story-title text-center text-[clamp(2.4rem,6vw,5rem)]">
-            Le collezioni <em>essenziali</em>
+        </div>
+        <div className="flex flex-col items-start justify-center gap-6 bg-night px-6 py-16 text-background md:px-16 lg:px-24">
+          <h2 data-split className="story-title text-[clamp(2.4rem,5vw,4.6rem)]">
+            Scopri Flair Avenue su <em>Instagram</em>
           </h2>
-          <p
-            data-reveal
-            className="mx-auto mt-5 max-w-xl text-center text-sm leading-relaxed text-muted-foreground"
-          >
-            {catText}
+          <p data-reveal className="max-w-sm text-base leading-relaxed text-background/80">
+            Look, novità e nuovi arrivi: li trovi prima di tutto sul nostro profilo.
           </p>
-
-          <div className="mt-14 grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-3">
-            {categories.map((category, i) => {
-              const hasProducts = category.count > 0 && !category.comingSoon;
-              const productLabel = category.count === 1 ? "prodotto" : "prodotti";
-              const offset = i % 3 === 1 ? "lg:mt-20" : "";
-              return hasProducts ? (
-                <Link
-                  key={category.slug}
-                  to="/product-category/$slug"
-                  params={{ slug: category.slug }}
-                  data-reveal
-                  className={`group block ${offset}`}
-                >
-                  <div data-parallax="6" className="parallax-frame aspect-3/4 bg-sand">
-                    <img
-                      src={sized(category.image, 1000)}
-                      alt={category.name}
-                      width={900}
-                      height={1200}
-                      loading="lazy"
-                      className="transition-[filter] duration-700 group-hover:brightness-95"
-                    />
-                  </div>
-                  <h3 className="heading-wide mt-5 text-sm">
-                    {category.name}
-                    <sup className="ml-1 text-[10px] text-muted-foreground">
-                      {category.count} {productLabel}
-                    </sup>
-                  </h3>
-                </Link>
-              ) : (
-                <div
-                  key={category.slug}
-                  data-reveal
-                  className={`flex aspect-3/4 flex-col items-center justify-center bg-sand p-4 ${offset}`}
-                >
-                  <h3 className="heading-wide text-center text-sm">{category.name}</h3>
-                  <p className="label-wide mt-2 text-muted-foreground">In arrivo</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      </div>
-
-      <Epilogue />
-      <StoryProgress />
-      <PageMotion />
+          <a
+            data-reveal
+            href={`https://www.instagram.com/${SHOP.instagram}/`}
+            target="_blank"
+            rel="noreferrer"
+            className="label-wide inline-flex border border-background px-9 py-4 transition-colors hover:bg-background hover:text-foreground"
+          >
+            Seguici su Instagram
+          </a>
+        </div>
+      </section>
     </>
   );
 }

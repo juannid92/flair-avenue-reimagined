@@ -55,7 +55,7 @@ export function Footer() {
         <div>
           <img src={LOGO_DARK} alt="FLAIR AVENUE" width={927} height={63} className="h-5 w-auto" loading="lazy" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Boutique fashion femminile online. Nuovi arrivi ogni settimana, selezione curata e
+            Abbigliamento donna online. Nuovi arrivi ogni settimana, collezione Fall/Winter 2026 e
             spedizione in tutta Italia.
           </p>
           <div className="mt-6 flex items-center gap-4">
