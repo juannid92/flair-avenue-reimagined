@@ -4,7 +4,7 @@ import { media, sized } from "@/lib/media";
 import { SHOP } from "@/lib/shop-config";
 import { CURRENT_SEASON, categories, products } from "@/data/products";
 import { HomeHero } from "@/components/home/HomeHero";
-import { ProductCard } from "@/components/site/ProductCard";
+import { SelectionRail } from "@/components/home/SelectionRail";
 import { PageMotion } from "@/components/site/PageMotion";
 
 export const Route = createFileRoute("/")({
@@ -59,7 +59,7 @@ function Home() {
       <PageMotion />
       <HomeHero />
 
-      <section className="border-b border-border bg-background">
+      <section className="relative z-10 border-b border-border bg-background">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-6 px-4 py-8 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
           {trust.map((item) => (
             <div key={item.title} data-reveal className="flex items-start gap-3">
@@ -73,24 +73,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
-        <div data-reveal className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="label-wide text-muted-foreground">Fall/Winter 2026</p>
-            <h2 className="story-title mt-2 text-[clamp(2.2rem,5vw,4rem)]">Selezione Flair</h2>
-          </div>
-          <Link to="/novita" className="link-underline label-wide">
-            Vedi tutti i nuovi arrivi
-          </Link>
-        </div>
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 lg:grid-cols-4">
-          {selection.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      <SelectionRail items={selection} />
 
-      <section className="bg-cream">
+      <section className="relative z-10 bg-cream">
         <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
           <h2 data-reveal className="story-title text-[clamp(2.2rem,5vw,4rem)]">
             Cerca per categoria
@@ -104,14 +89,14 @@ function Home() {
                 data-reveal
                 className="group block"
               >
-                <div className="aspect-3/4 overflow-hidden bg-sand">
+                <div data-parallax="6" className="parallax-frame aspect-3/4 bg-sand">
                   <img
                     src={sized(category.image, 600)}
                     alt={category.name}
                     width={600}
                     height={800}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="transition-[filter] duration-700 group-hover:brightness-95"
                   />
                 </div>
                 <h3 className="heading-wide mt-4 text-sm">
@@ -124,7 +109,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="grid md:grid-cols-2">
+      <section className="relative z-10 grid md:grid-cols-2">
         <div
           data-parallax="8"
           className="parallax-frame order-1 aspect-4/5 bg-night md:order-none md:aspect-auto md:min-h-[560px]"
