@@ -9,7 +9,8 @@ export const Route = createFileRoute("/novita")({
       { title: "Novità — Nuovi arrivi settimanali | Flair Avenue" },
       {
         name: "description",
-        content: "I nuovi arrivi Flair Avenue: i capi aggiunti ogni settimana allo shop online.",
+        content:
+          "I nuovi arrivi Flair Avenue: i capi aggiunti ogni settimana allo shop online.",
       },
       { property: "og:title", content: "Novità — Nuovi arrivi settimanali | Flair Avenue" },
       { property: "og:description", content: "Nuovi capi femminili ogni settimana." },

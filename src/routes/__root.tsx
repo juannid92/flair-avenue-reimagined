@@ -20,6 +20,7 @@ import { CartDrawer } from "@/components/site/CartDrawer";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
+import { Preloader } from "@/components/site/Preloader";
 import { ScrollReset } from "@/components/site/PageMotion";
 
 function NotFoundComponent() {
@@ -83,11 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Flair Avenue — Abbigliamento donna online" },
+      { title: "Flair Avenue — Moda donna online" },
       {
         name: "description",
         content:
-          "Abbigliamento donna online: abiti, top, jeans, giacche e gonne. Nuovi arrivi, spedizione gratuita in Italia.",
+          "Moda donna online: abiti, top, giacche e gonne con nuovi arrivi ogni settimana.",
       },
       { property: "og:site_name", content: "Flair Avenue" },
       { property: "og:type", content: "website" },
@@ -141,6 +142,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ShopProvider>
         <SmoothScroll />
+        <Preloader />
         <ScrollReset />
         <div className="flex min-h-screen flex-col">
           <Header />

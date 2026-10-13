@@ -31,10 +31,7 @@ function CarrelloPage() {
         {cart.length === 0 ? (
           <div className="py-16 text-center">
             <p className="text-sm text-muted-foreground">Non ci sono prodotti nel carrello.</p>
-            <Link
-              to="/shop"
-              className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground"
-            >
+            <Link to="/shop" className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground">
               Vai allo shop
             </Link>
           </div>
@@ -71,21 +68,11 @@ function CarrelloPage() {
                       </p>
                       <div className="mt-4 flex items-center justify-between">
                         <div className="flex items-center border border-border">
-                          <button
-                            type="button"
-                            aria-label="Diminuisci quantità"
-                            className="px-3 py-2"
-                            onClick={() => updateQty(index, line.qty - 1)}
-                          >
+                          <button type="button" aria-label="Diminuisci quantità" className="px-3 py-2" onClick={() => updateQty(index, line.qty - 1)}>
                             <Minus size={12} />
                           </button>
                           <span className="min-w-7 text-center text-xs">{line.qty}</span>
-                          <button
-                            type="button"
-                            aria-label="Aumenta quantità"
-                            className="px-3 py-2"
-                            onClick={() => updateQty(index, line.qty + 1)}
-                          >
+                          <button type="button" aria-label="Aumenta quantità" className="px-3 py-2" onClick={() => updateQty(index, line.qty + 1)}>
                             <Plus size={12} />
                           </button>
                         </div>
@@ -108,10 +95,7 @@ function CarrelloPage() {
                   ? `Aggiungi ${formatPrice(missing)} al carrello per ottenere la spedizione gratuita`
                   : "Spedizione gratuita in tutta Italia, senza importo minimo"}
               </p>
-              <button
-                type="button"
-                className="label-wide mt-6 w-full bg-primary py-4 text-primary-foreground"
-              >
+              <button type="button" className="label-wide mt-6 w-full bg-primary py-4 text-primary-foreground">
                 Procedi al pagamento
               </button>
             </aside>

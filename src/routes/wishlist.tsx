@@ -30,10 +30,7 @@ function WishlistPage() {
         {items.length === 0 ? (
           <div className="py-16 text-center">
             <p className="text-sm text-muted-foreground">Non ci sono prodotti nella wishlist.</p>
-            <Link
-              to="/shop"
-              className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground"
-            >
+            <Link to="/shop" className="label-wide mt-8 inline-flex bg-primary px-10 py-4 text-primary-foreground">
               Vai allo shop
             </Link>
           </div>

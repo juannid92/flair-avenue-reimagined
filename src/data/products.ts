@@ -6,17 +6,6 @@ export type CategorySlug =
   | "gonne-e-shorts"
   | "giacche";
 
-/** Collezioni stagionali: fw26 = Fall/Winter 2026 (in vetrina), ss26 = Spring/Summer 2026. */
-export type Season = "fw26" | "ss26";
-
-export const SEASONS: { id: Season; label: string }[] = [
-  { id: "fw26", label: "Autunno/Inverno 2026" },
-  { id: "ss26", label: "Primavera/Estate 2026" },
-];
-
-/** Collezione mostrata di default in tutto il sito. */
-export const CURRENT_SEASON: Season = "fw26";
-
 export interface Product {
   id: string;
   slug: string;
@@ -29,7 +18,6 @@ export interface Product {
   hasVariants: boolean;
   isNew: boolean;
   createdAt: string;
-  season: Season;
   description: string;
 }
 
@@ -66,7 +54,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Gonna midi a tubino in effetto pelle color coffee, vita alta e spacco sul davanti. Taglie S, M, L.",
   },
@@ -87,7 +74,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Mini abito marrone aderente con collo drappeggiato a cowl, maniche lunghe svasate, arricciature laterali e orlo asimmetrico. Taglia unica.",
   },
@@ -108,7 +94,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Gonna midi a tubino in effetto pelle verde green golden, vita alta e spacco sul davanti. Taglie S, M, L.",
   },
@@ -129,7 +114,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Minidress Sydney nero con spalline sottili, dettagli in pizzo e drappeggio sul davanti. Taglia Unica.",
   },
@@ -150,7 +134,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Minidress Hilton coffe con colletto, maniche lunghe, bottoni sul davanti e tasche sul petto. Disponibile in 4 taglie: S, M, L e XL. Le modelle sono alte 1,65 m: la prima indossa M, la seconda S.",
   },
@@ -171,7 +154,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Pantalone militare camouflage a gamba ampia, con coulisse in vita, tasche e bande laterali a contrasto. Taglie S/M e M/L. La modella è alta 1,65 m e indossa S/M.",
   },
@@ -191,7 +173,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Minidress Sydney marrone con spalline sottili, dettagli in pizzo e drappeggio sul davanti. Taglia Unica.",
   },
@@ -211,7 +192,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Minidress Sydney Bordeaux con spalline sottili, dettagli in pizzo e drappeggio sul davanti. Taglia Unica.",
   },
@@ -232,7 +212,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Mini abito bordeaux aderente con arricciature laterali, laccetti regolabili sul fianco, maniche lunghe svasate e orlo asimmetrico. Taglia unica.",
   },
@@ -253,7 +232,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Coordinato beige composto da camicia corta con apertura sagomata sul davanti e pantalone a vita alta con ampie pieghe. Taglia unica.",
   },
@@ -273,7 +251,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Coordinato color coffee composto da camicia corta con apertura sagomata sul davanti e pantalone a vita alta con ampie pieghe. Taglia unica.",
   },
@@ -294,7 +271,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Corpetto bustier senza spalline in fantasia pied-de-poule coffee e nero, con coppe sagomate e bottoni sul davanti. Taglia M/L.",
   },
@@ -315,7 +291,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Maglia oversize a righe grigie e gialle, con effetto doppia manica e piccolo dettaglio a cuore. Taglia Unica.",
   },
@@ -336,7 +311,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Jeans capri a gamba larga in denim lavaggio chiaro, con tagli laterali sui fianchi bordati di strass. Taglie S, M, L.",
   },
@@ -356,7 +330,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Maglia oversize a righe blu e verde, con effetto doppia manica e piccolo dettaglio a cuore. Taglia Unica.",
   },
@@ -377,7 +350,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: true,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Coordinato marrone composto da camicia corta con apertura sagomata sul davanti e pantalone a vita alta con ampie pieghe. Taglia unica.",
   },
@@ -398,7 +370,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-10-09",
-    season: "fw26",
     description:
       "Canotta corta a costine con girocollo e spalle larghe, color grigio. Taglia unica.",
   },
@@ -418,7 +389,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Vestito lungo marrone in pizzo con collo alto e apertura a goccia sul davanti, dalla linea aderente e senza maniche.",
   },
@@ -438,7 +408,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Coordinato marrone in pizzo composto da corpetto con apertura sul retro e gonna longuette aderente.",
   },
@@ -457,7 +426,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Camicia a quadri marrone con righe blu scuro, panna e giallo, colletto classico, bottoni frontali e taschino sul petto. Taglia unica.",
   },
@@ -478,7 +446,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Pantagonna verde a vita alta, taglia L. Unisce la praticità del pantaloncino alla linea femminile della gonna.",
   },
@@ -499,7 +466,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Pantagonna nera a vita alta. Unisce la praticità del pantaloncino alla linea femminile della gonna.",
   },
@@ -520,7 +486,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Jeans militare a fantasia camouflage, dalla linea morbida e gamba dritta. Taglia unica.",
   },
@@ -541,7 +506,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Completo marrone taglia unica composto da gilet smanicato con zip e pantalone ampio con vita elasticizzata e coulisse.",
   },
@@ -561,7 +525,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Body bianco a camicia con colletto classico, bottoni frontali, maniche lunghe e drappeggio. Taglia unica.",
   },
@@ -582,7 +545,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Abito nero corto con maniche lunghe ampie, scollo profondo sul davanti e fascia da annodare in vita.",
   },
@@ -603,7 +565,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Pantalone tuta marrone in acrilico con strisce azzurre laterali, vita elasticizzata e gamba ampia.",
   },
@@ -622,7 +583,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Pantagonna marrone a vita alta. Unisce la praticità del pantaloncino alla linea femminile della gonna.",
   },
@@ -642,7 +602,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Body nero a camicia con colletto classico, bottoni frontali, maniche lunghe e drappeggio. Taglia unica.",
   },
@@ -661,7 +620,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Pantaloncino marrone effetto camoscio con frange laterali e allacciatura frontale. Taglie indicate: S/M e M/L.",
   },
@@ -681,7 +639,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Vestitino corto nero in pizzo con spalline sottili, scollo particolare sul retro e orlo smerlato.",
   },
@@ -701,7 +658,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Vestitino corto marrone in pizzo con spalline sottili, scollo particolare sul retro e orlo smerlato.",
   },
@@ -720,7 +676,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Giacca nera dalla linea morbida, con maniche lunghe e chiusura frontale con zip. Taglia unica.",
   },
@@ -739,7 +694,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Camicia verde a quadri dalla linea morbida, con colletto classico, chiusura frontale con bottoni e maniche lunghe. Taglia unica da verificare.",
   },
@@ -759,7 +713,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Giacchino nero con cappuccio, spalline strutturate e chiusura frontale con zip. Taglia unica.",
   },
@@ -779,7 +732,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description:
       "Vestito lungo nero in pizzo con bretelle sottili, linea aderente e fondo effetto semitrasparente.",
   },
@@ -800,7 +752,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-26",
-    season: "fw26",
     description: "Abito nero corto a manica corta con linea aderente e drappeggio laterale.",
   },
   {
@@ -819,7 +770,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-25",
-    season: "fw26",
     description:
       "Jeans a vita alta dal design contemporaneo, caratterizzato da una vestibilità ampia e gamba wide leg, perfetta per creare look urban e di tendenza. Realizzato in denim grigio effetto délavé, presenta dettagli di cuciture a vista e tasche applicate laterali che donano al capo un carattere cargo ricercato.",
   },
@@ -840,7 +790,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Canotta nera dal design essenziale e raffinato, caratterizzata da uno scollo gioiello che illumina il décolleté e aggiunge un dettaglio prezioso al modello. La linea aderente valorizza la silhouette con semplicità. Un capo versatile da indossare con jeans, gonne e pantaloni eleganti oppure sotto una giacca.",
   },
@@ -860,7 +809,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Pantalone dalla linea femminile impreziosito da applicazioni di strass in vita, pensate per illuminare il modello e mettere in risalto il punto vita. Il dettaglio gioiello dona carattere anche agli abbinamenti più essenziali.",
   },
@@ -881,7 +829,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Completo marrone composto da camicia con colletto e top coordinato a righe, pensato per creare un look ricercato e contemporaneo. La sovrapposizione dei due capi aggiunge profondità all’outfit e rende il modello originale ma facile da indossare.",
   },
@@ -902,7 +849,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Vestito a manica lunga dalla linea femminile e strutturata, caratterizzato da spalline interne che definiscono la parte superiore e valorizzano la silhouette. Il drappeggio sul davanti crea movimento e accompagna delicatamente le forme. Elegante e deciso, è perfetto per cerimonie, eventi e occasioni serali.",
   },
@@ -920,7 +866,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Body Lumina con fantasia leopardata dal carattere deciso e femminile, pensato per valorizzare la silhouette con una linea aderente. La stampa animalier rende il modello protagonista e dona personalità anche agli outfit più semplici.",
   },
@@ -940,7 +885,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Canotta marrone dalla linea essenziale e femminile, impreziosita da uno scollo gioiello che illumina il décolleté e rende il capo immediatamente più ricercato. La vestibilità valorizza la figura mantenendo uno stile pulito e versatile.",
   },
@@ -961,7 +905,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Completo verde composto da camicia con colletto e top coordinato a righe, caratterizzato da uno stile fresco e contemporaneo. La combinazione dei due capi crea un effetto sovrapposto originale e dona personalità anche agli abbinamenti più semplici.",
   },
@@ -982,7 +925,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Jeans barrel dal taglio contemporaneo, caratterizzato da una gamba ampia e leggermente arrotondata che si restringe gradualmente verso il fondo. La particolare costruzione crea una silhouette moderna e dona personalità al modello.",
   },
@@ -1002,7 +944,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-12",
-    season: "fw26",
     description:
       "Body beige a manica lunga dalla linea pulita e aderente, pensato per accompagnare la silhouette e garantire un effetto ordinato sotto qualsiasi capo. La tonalità neutra lo rende facile da inserire in numerosi abbinamenti.",
   },
@@ -1022,7 +963,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "T-shirt lunga basic dal design essenziale e versatile, caratterizzata da una linea dritta e morbida. Il girocollo classico e le maniche corte rendono il modello comodo e facile da indossare durante tutta la giornata. Un capo indispensabile da abbinare a jeans, pantaloni sportivi, gonne o shorts.",
   },
@@ -1042,7 +982,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Pantaloni sportivi a gamba ampia caratterizzati da una linea morbida e da doppie strisce rosa a contrasto lungo i lati. La vita elasticizzata garantisce una vestibilità comoda, mentre il fondo regolabile con coulisse permette di modificare la forma della gamba.",
   },
@@ -1062,7 +1001,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Pantaloni balloon a vita alta caratterizzati da una linea ampia e strutturata, che si restringe leggermente verso il fondo. Le cuciture verticali valorizzano il design del modello, mentre la cintura coordinata permette di definire il punto vita.",
   },
@@ -1083,7 +1021,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Pantaloni balloon a vita alta caratterizzati da una linea ampia e strutturata, che si restringe leggermente verso il fondo. Le cuciture verticali valorizzano il design del modello, mentre la cintura coordinata permette di definire il punto vita.",
   },
@@ -1103,7 +1040,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Jeans flare a vita alta caratterizzati da un lavaggio chiaro effetto vintage e da una linea aderente sui fianchi, che si apre gradualmente verso il fondo. La gamba svasata slancia la figura e dona al modello uno stile deciso e contemporaneo.",
   },
@@ -1124,7 +1060,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Giacca in denim scuro dal taglio ampio e contemporaneo, caratterizzata da cuciture a contrasto che valorizzano la struttura del modello. La cintura coordinata permette di definire il punto vita e di personalizzare la vestibilità.",
   },
@@ -1143,7 +1078,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "T-shirt lunga basic dal design essenziale e versatile, caratterizzata da una linea dritta e morbida. Il girocollo classico e le maniche corte rendono il modello comodo e facile da indossare durante tutta la giornata. Un capo indispensabile da abbinare a jeans, pantaloni sportivi, gonne o shorts.",
   },
@@ -1164,7 +1098,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Pantaloni sportivi a gamba ampia caratterizzati da una linea morbida e da doppie strisce rosa a contrasto lungo i lati. La vita elasticizzata garantisce una vestibilità comoda, mentre il fondo regolabile con coulisse permette di modificare la forma della gamba.",
   },
@@ -1185,7 +1118,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Giacca brown effetto pelle dal taglio ampio e contemporaneo, caratterizzata da una texture leggermente martellata e da un design deciso. Il collo ampio, la chiusura frontale con zip e le cuciture sagomate valorizzano la struttura del modello.",
   },
@@ -1206,7 +1138,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Pantaloni balloon a vita alta caratterizzati da una linea ampia e strutturata, che si restringe leggermente verso il fondo. Le cuciture verticali valorizzano il design del modello, mentre la cintura coordinata permette di definire il punto vita.",
   },
@@ -1227,7 +1158,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Giacca biker crop nera effetto pelle dal design grintoso e intramontabile. Il modello presenta una linea corta e strutturata, valorizzata dalla chiusura con zip diagonale e dagli ampi revers con bottoni metallici.",
   },
@@ -1248,7 +1178,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-09-01",
-    season: "fw26",
     description:
       "Salopette in denim dal design casual e contemporaneo, caratterizzata da una linea morbida con gamba ampia che garantisce comfort e libertà di movimento. La pettorina presenta una pratica tasca frontale, mentre le bretelle regolabili permettono di adattare facilmente la vestibilità.",
   },
@@ -1269,7 +1198,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-08",
-    season: "ss26",
     description:
       "Gonna lunga effetto plissé dalla linea ampia e fluida, caratterizzata da una fascia alta drappeggiata che avvolge e valorizza il punto vita. La lavorazione raccolta sotto la fascia dona volume al modello e crea movimento lungo tutta la gonna.",
   },
@@ -1290,7 +1218,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-08",
-    season: "ss26",
     description:
       "Pantaloncino nero dalla linea corta e aderente, caratterizzato da una vita alta che avvolge la silhouette. Il modello presenta una sgambatura arrotondata che valorizza la figura e rende il capo essenziale ma deciso.",
   },
@@ -1309,7 +1236,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-08",
-    season: "ss26",
     description:
       "Body canotta dalla linea essenziale e femminile, caratterizzato da una lavorazione a costine che segue la silhouette. Il modello presenta scollo rotondo, spalline larghe e una vestibilità aderente. Il design pulito lo rende facile da abbinare a jeans, pantaloni e gonne a vita alta, oppure da indossare sotto una giacca.",
   },
@@ -1330,7 +1256,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-08-08",
-    season: "ss26",
     description:
       "Vestito lungo nero dal carattere elegante e sensuale, caratterizzato da un corpetto con coppe rivestite in pizzo. Il modello presenta uno scollo profondo a V, spalline sottili e una linea pulita che accompagna la silhouette.",
   },
@@ -1350,7 +1275,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Canotta corta dal design essenziale e originale, caratterizzata da una stampa centrale con sole e stelle. Il modello presenta scollo rotondo, spalline ampie e profili a contrasto lungo lo scollo e il giromanica.",
   },
@@ -1371,7 +1295,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Vestito lungo dal carattere sofisticato e sensuale, caratterizzato da un particolare inserto al collo che scende sul davanti e si raccoglie in un dettaglio gioiello centrale. Il corpetto strutturato valorizza il décolleté, mentre le ampie aperture laterali lasciano scoperti i fianchi.",
   },
@@ -1392,7 +1315,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Vestito lungo in macrame dalla lavorazione traforata, un capo di carattere che unisce artigianalita e sensualita. Il modello presenta scollo a V profondo, chiusura frontale con bottoni gioiello, manica lunga svasata sul fondo e balza finale che allarga la linea.",
   },
@@ -1413,7 +1335,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Vestito corto rosa dal carattere delicato e grintoso allo stesso tempo, definito dal contrasto tra il colore tenue e le borchie metalliche. Il modello presenta scollo drappeggiato a incrocio, spalline sottili annodate dietro il collo e schiena scoperta.",
   },
@@ -1434,7 +1355,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Vestito lungo leopardato dal carattere sensuale e deciso, costruito sul contrasto tra la stampa animalier e il pizzo nero. Il modello presenta spalline sottili, coppe rifinite in pizzo e una fascia semitrasparente in vita che apre il corpetto senza scoprirlo.",
   },
@@ -1455,7 +1375,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "T-shirt corta dalla linea pulita ed essenziale, realizzata in cotone dalla mano compatta. Il modello presenta girocollo a costine, manica corta e lunghezza cropped che si ferma appena sopra la vita.",
   },
@@ -1475,7 +1394,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Abito corto marrone con fantasia a pois azzurri, elegante e inaspettato nell’accostamento cromatico, rifinito con dettagli in pizzo. Il modello presenta una piccola apertura a goccia sul davanti bordata di pizzo, maniche a tre quarti con spalla leggermente strutturata e drappeggio sui fianchi.",
   },
@@ -1495,7 +1413,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-08-07",
-    season: "ss26",
     description:
       "Abito corto giallo con fantasia a pois marroni, solare e sofisticato, impreziosito da rifiniture in pizzo. Il modello presenta una piccola apertura a goccia sul davanti bordata di pizzo, maniche a tre quarti con spalla leggermente strutturata e drappeggio sui fianchi.",
   },
@@ -1515,7 +1432,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Abito lungo azzurro in pizzo con spacco frontale, scenografico e luminoso. Il modello presenta un effetto semitrasparente con lavorazione ricca e dettagli sfrangiati che creano movimento lungo la gamba.",
   },
@@ -1534,7 +1450,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Abito corto giallo dal carattere romantico e deciso, realizzato con effetto pizzo e giochi di trasparenza. Il modello presenta scollo frontale con laccetti, maniche lunghe leggere e volant che creano movimento sulla parte alta e sui lati.",
   },
@@ -1554,7 +1469,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Completo azzurro composto da top e pantalone lungo coordinato. La linea morbida del pantalone e il top con laccetti frontali creano un look femminile, fresco e molto estivo. La texture leggera e la tonalita celeste rendono il completo ideale per serate, eventi informali o vacanze, con un effetto curato senza sforzo.",
   },
@@ -1574,7 +1488,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Completino beige e marrone con canotta e pantaloncino coordinati. La fantasia a righe e il taglio corto lo rendono pratico, fresco e perfetto per un look estivo gia completo. Il top aderente e lo short seguono la figura senza appesantire, mentre la schiena scoperta aggiunge un dettaglio piu femminile.",
   },
@@ -1594,7 +1507,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Completino verde e rosa con canotta e pantaloncino coordinati, caratterizzato da una fantasia a righe dal mood estivo. Il taglio aderente crea un effetto fresco e femminile, perfetto per giornate calde e look vacanza.",
   },
@@ -1614,7 +1526,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Top beige con volant e laccetti frontali, dal taglio fluido e femminile. Le punte asimmetriche creano movimento, mentre la schiena scoperta lo rende leggero e scenografico. Perfetto con jeans ampi, pantaloni a vita bassa o shorts, e ideale per look estivi con un tocco romantico ma deciso.",
   },
@@ -1634,7 +1545,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "T-shirt rosa aderente con fronte essenziale e scollo profondo sulla schiena. Un capo semplice solo in apparenza, pensato per aggiungere un dettaglio femminile anche ai look piu casual.",
   },
@@ -1654,7 +1564,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Abito lungo in pizzo marrone, aderente e scenografico. La lavorazione traforata dona texture al capo, mentre le spalline sottili e la linea lunga lo rendono femminile e sofisticato. Il colore caldo lo rende perfetto per look serali o estivi con accessori dorati, sandali o tacchi.",
   },
@@ -1673,7 +1582,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Abito lungo in pizzo bianco, con linea aderente e lavorazione traforata che valorizza la silhouette. Il modello ha un effetto pulito e luminoso, ideale per look estivi eleganti o serate speciali.",
   },
@@ -1693,7 +1601,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Abito nero con corpetto in pizzo e gonna effetto seta, elegante ma con carattere. La parte superiore ha un taglio bustier con spalline sottili e dettagli semi-trasparenti, mentre la gonna lucida crea contrasto e movimento. Il risultato e un mini dress ideale per la sera, femminile e scenografico senza essere eccessivo.",
   },
@@ -1713,7 +1620,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Abito in pizzo beige con sottopantaloncino, romantico e luminoso. Il modello presenta spalline sottili, corpetto femminile e gonna a balze che crea volume e movimento. Il sottopantaloncino rende il capo piu pratico da indossare, mentre il pizzo e le trasparenze leggere mantengono un effetto delicato e d’impatto.",
   },
@@ -1731,7 +1637,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Canotta Lumina lunga color panna, con linea aderente e lunghezza regolare. Il modello essenziale valorizza la silhouette senza risultare troppo scoperto, perfetto per outfit puliti e versatili.",
   },
@@ -1749,7 +1654,6 @@ export const products: Product[] = [
     hasVariants: false,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Canotta Lumina corta in grigio, dal taglio crop e dalla linea pulita. Il tessuto a costine segue la figura e la rende ideale per look quotidiani, sportivi o casual. La tonalita neutra la rende facile da abbinare a denim chiari, pantaloni cargo o gonne, mantenendo un effetto fresco e minimal.",
   },
@@ -1768,7 +1672,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Canotta Lumina corta in colore nero, un basic essenziale con taglio crop e vestibilita aderente. Il tessuto a costine e lo scollo tondo la rendono semplice da abbinare e comoda da indossare.",
   },
@@ -1788,7 +1691,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Jeans Adoro dal lavaggio scuro effetto marmorizzato, con linea ampia e mood grintoso. Il colore tra nero e marrone lo rende particolare e facile da usare come alternativa ai classici denim blu.",
   },
@@ -1809,7 +1711,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Corpetto leopardato dal taglio femminile e deciso, con spalline sottili e profili in pizzo nero. Il motivo animalier rende il capo protagonista, ideale per look serali o per dare carattere a un jeans.",
   },
@@ -1830,7 +1731,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "La prima modella indossa tg S ed è alta 1,65 La seconda modella indossa tg M ed è alta 1,65 Jeans Ciaccioli in denim chiaro, caratterizzato da una gamba ampia e da frange laterali che seguono tutta la linea del pantalone. Un modello scenografico, perfetto per rendere speciale anche un outfit semplice.",
   },
@@ -1850,7 +1750,6 @@ export const products: Product[] = [
     hasVariants: true,
     isNew: false,
     createdAt: "2026-07-24",
-    season: "ss26",
     description:
       "Jeans Azara in denim blu scuro, pensato per un look street e deciso. Il modello ha una linea ampia con gamba morbida e fondo largo, ideale da indossare con top aderenti, crop top o capi piu essenziali.",
   },
@@ -1858,11 +1757,10 @@ export const products: Product[] = [
 
 const find = (id: string) => products.find((p) => p.id === id);
 const cover = (id: string) => find(id)?.images[0] ?? products[0].images[0];
-const countIn = (slug: CategorySlug) =>
-  products.filter((p) => p.category === slug && p.season === CURRENT_SEASON).length;
+const countIn = (slug: CategorySlug) => products.filter((p) => p.category === slug).length;
 
 export const categories: Category[] = [
-  { slug: "abiti", name: "Abiti", count: countIn("abiti"), image: cover("3362") },
+  { slug: "abiti", name: "Abiti", count: countIn("abiti"), image: cover("2848") },
   { slug: "completi", name: "Completi", count: countIn("completi"), image: cover("3521") },
   { slug: "top", name: "Top", count: countIn("top"), image: cover("3116") },
   {
@@ -1915,5 +1813,5 @@ export const catalog: CatalogRepository = localCatalog;
 /* Accessori sincroni per il rendering SSR immediato */
 export const getProductBySlug = (slug: string) => products.find((p) => p.slug === slug);
 export const getProductsByCategory = (slug: CategorySlug) =>
-  products.filter((p) => p.category === slug && p.season === CURRENT_SEASON);
+  products.filter((p) => p.category === slug);
 export const getCategory = (slug: string) => categories.find((c) => c.slug === slug);
